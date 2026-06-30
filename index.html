@@ -234,6 +234,10 @@
                     <span class="host-url">http://europe.cdneu.pro:80</span>
                     <button class="copy-btn" onclick="copyText('http://europe.cdneu.pro:80', this)">نسخ</button>
                 </div>
+                <div class="host-item">
+                    <span class="host-url">http://trial.dxna.me:80</span>
+                    <button class="copy-btn" onclick="copyText('http://trial.dxna.me:80', this)">نسخ</button>
+                </div>
             </div>
 
             <!-- سيرفر X -->
@@ -322,6 +326,10 @@
                 <div class="host-item">
                     <span class="host-url">http://abomohi.com:80</span>
                     <button class="copy-btn" onclick="copyText('http://abomohi.com:80', this)">نسخ</button>
+                </div>
+                <div class="host-item">
+                    <span class="host-url">http://masterioltd.com</span>
+                    <button class="copy-btn" onclick="copyText('http://masterioltd.com', this)">نسخ</button>
                 </div>
             </div>
 
@@ -575,17 +583,14 @@
 </div>
 
 <script>
-    // دالة النسخ الاحترافية
+    // دالة النسخ الذكية
     function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
-            // حفظ النص الأصلي للزر
             const originalText = button.innerText;
             
-            // تغيير حالة الزر إلى "تم النسخ" بنجاح
             button.innerText = 'تم النسخ! ✓';
             button.classList.add('copied');
             
-            // إعادة الزر لحالته الطبيعية بعد ثانيتين
             setTimeout(() => {
                 button.innerText = originalText;
                 button.classList.remove('copied');
