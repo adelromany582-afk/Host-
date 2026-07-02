@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMARTERS HOSTS PORTAL</title>
-    <!-- استيراد خط Tajawal الفخم من جوجل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -43,9 +42,8 @@
         /* الهيدر الرئيسي */
         header {
             text-align: center;
-            margin-bottom: 50px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
         }
 
         header h1 {
@@ -65,9 +63,41 @@
             font-size: 1.1rem;
         }
 
+        /* قسم البحث الاحترافي */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 15px rgba(204, 164, 59, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
         /* التقسيمات الكبرى (ECONOMY, VIP, etc.) */
         .category-section {
             margin-bottom: 60px;
+            transition: all 0.3s ease;
         }
 
         .category-title {
@@ -95,7 +125,7 @@
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
         }
 
         .server-card:hover {
@@ -172,6 +202,15 @@
             text-align: center;
         }
 
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin: 40px 0;
+            display: none;
+        }
+
         /* شاشات الموبايل */
         @media (max-width: 768px) {
             .servers-grid {
@@ -179,6 +218,9 @@
             }
             body {
                 padding: 20px 10px;
+            }
+            header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -192,13 +234,17 @@
         <p>منصة إدارة ونسخ الهوستات الذكية بلمسة واحدة</p>
     </header>
 
-    <!-- ================= SECTION: ECONOMY ================= -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 اكتب اسم السيرفر للبحث السريع...">
+    </div>
+
+    <div id="noResultsMessage" class="no-results">❌ عذراً، لا يوجد سيرفر بهذا الاسم!</div>
+
     <section class="category-section">
         <h2 class="category-title">قسم ECONOMY</h2>
         <div class="servers-grid">
             
-            <!-- سيرفر KTN -->
-            <div class="server-card">
+            <div class="server-card" data-name="ktn">
                 <div class="server-name">KTN</div>
                 <div class="host-item">
                     <span class="host-url">http://cdntrankt.xyz</span>
@@ -214,8 +260,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر ceme -->
-            <div class="server-card">
+            <div class="server-card" data-name="ceme">
                 <div class="server-name">ceme</div>
                 <div class="host-item">
                     <span class="host-url">http://apk4k.org</span>
@@ -227,8 +272,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر plume -->
-            <div class="server-card">
+            <div class="server-card" data-name="plume بلوم">
                 <div class="server-name">plume</div>
                 <div class="host-item">
                     <span class="host-url">http://europe.cdneu.pro:80</span>
@@ -240,8 +284,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر X -->
-            <div class="server-card">
+            <div class="server-card" data-name="x">
                 <div class="server-name">X</div>
                 <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
                 <div class="host-item">
@@ -253,13 +296,11 @@
         </div>
     </section>
 
-    <!-- ================= SECTION: VIP ================= -->
     <section class="category-section">
         <h2 class="category-title" style="--accent-gold: #ff4757; border-right-color: #ff4757;">قسم VIP ⭐</h2>
         <div class="servers-grid">
             
-            <!-- سيرفر kasser (تم النقل لهنا وتحديث الهوستات) -->
-            <div class="server-card">
+            <div class="server-card" data-name="kasser الكاسر">
                 <div class="server-name">kasser</div>
                 <div class="host-item">
                     <span class="host-url">http://ss.priv-spic.online:80</span>
@@ -271,8 +312,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر modamer (تم النقل لهنا) -->
-            <div class="server-card">
+            <div class="server-card" data-name="modamer مدمر">
                 <div class="server-name">modamer</div>
                 <div class="host-item">
                     <span class="host-url">http://almodamer.com:8080</span>
@@ -284,8 +324,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر DH -->
-            <div class="server-card">
+            <div class="server-card" data-name="dh">
                 <div class="server-name">DH</div>
                 <div class="host-item">
                     <span class="host-url">http://renvioweb.online:8080</span>
@@ -293,8 +332,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر maven -->
-            <div class="server-card">
+            <div class="server-card" data-name="maven">
                 <div class="server-name">maven</div>
                 <div class="note">⚠️ الافضل نجيب هوست من اللوحه</div>
                 <div class="host-item">
@@ -307,8 +345,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر tv33 -->
-            <div class="server-card">
+            <div class="server-card" data-name="tv33">
                 <div class="server-name">tv33</div>
                 <div class="host-item">
                     <span class="host-url">http://rianto.xyz:8080</span>
@@ -316,8 +353,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر shamel -->
-            <div class="server-card">
+            <div class="server-card" data-name="shamel شامل">
                 <div class="server-name">shamel</div>
                 <div class="host-item">
                     <span class="host-url">http://abomohi.com:80</span>
@@ -329,8 +365,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر DINO -->
-            <div class="server-card">
+            <div class="server-card" data-name="dino دينو">
                 <div class="server-name">DINO</div>
                 <div class="note">الهوستات الخاصة بينا دينو</div>
                 <div class="host-item">
@@ -348,8 +383,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر MAX (تم تنظيف الهوستات بناءً على الصورة المتوقفة) -->
-            <div class="server-card">
+            <div class="server-card" data-name="max ماكس">
                 <div class="server-name">MAX</div>
                 <div class="host-item">
                     <span class="host-url">http://max.m950.org:2052</span>
@@ -365,8 +399,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر HOOK -->
-            <div class="server-card">
+            <div class="server-card" data-name="hook هوك">
                 <div class="server-name">HOOK</div>
                 <div class="host-item">
                     <span class="host-url">http://darkteam.vip:80</span>
@@ -402,8 +435,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر mega -->
-            <div class="server-card">
+            <div class="server-card" data-name="mega ميجا">
                 <div class="server-name">mega</div>
                 <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
                 <div class="host-item">
@@ -428,8 +460,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر beno -->
-            <div class="server-card">
+            <div class="server-card" data-name="beno بينو">
                 <div class="server-name">beno</div>
                 <div class="host-item">
                     <span class="host-url">http://beno8k.live:8080</span>
@@ -444,13 +475,11 @@
         </div>
     </section>
 
-    <!-- ================= SECTION: ULTRA ================= -->
     <section class="category-section">
         <h2 class="category-title" style="--accent-gold: #00e5ff; border-right-color: #00e5ff;">قسم ULTRA 🔥</h2>
         <div class="servers-grid">
             
-            <!-- سيرفر HULK -->
-            <div class="server-card">
+            <div class="server-card" data-name="hulk هالك">
                 <div class="server-name">HULK</div>
                 <div class="host-item">
                     <span class="host-url">http://hplayer.info:8080</span>
@@ -458,8 +487,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر neo -->
-            <div class="server-card">
+            <div class="server-card" data-name="neo نيو">
                 <div class="server-name">neo</div>
                 <div class="host-item">
                     <span class="host-url">http://cf.business-cloud-neo.ru</span>
@@ -467,8 +495,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر TEMU -->
-            <div class="server-card">
+            <div class="server-card" data-name="temu تيمو">
                 <div class="server-name">TEMU</div>
                 <div class="host-item">
                     <span class="host-url">http://maripor.com</span>
@@ -484,8 +511,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر DAR -->
-            <div class="server-card">
+            <div class="server-card" data-name="dar دار">
                 <div class="server-name">DAR</div>
                 <div class="host-item">
                     <span class="host-url">http://darpro4k.com:8080</span>
@@ -505,8 +531,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر AMIGO -->
-            <div class="server-card">
+            <div class="server-card" data-name="amigo أميجو">
                 <div class="server-name">AMIGO</div>
                 <div class="host-item">
                     <span class="host-url">http://cf.business-cdn.com:80</span>
@@ -522,8 +547,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر DLTA -->
-            <div class="server-card">
+            <div class="server-card" data-name="dlta دلتا">
                 <div class="server-name">DLTA</div>
                 <div class="host-item">
                     <span class="host-url">http://dlta4k.com:80</span>
@@ -539,8 +563,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر 4MATIC -->
-            <div class="server-card">
+            <div class="server-card" data-name="4matic فور ماتيك">
                 <div class="server-name">4MATIC</div>
                 <div class="host-item">
                     <span class="host-url">http://4ksmart.me</span>
@@ -548,8 +571,7 @@
                 </div>
             </div>
 
-            <!-- سيرفر STRONG & ZEN -->
-            <div class="server-card">
+            <div class="server-card" data-name="strong zen سترونج زين">
                 <div class="server-name">STRONG & ZEN</div>
                 <div class="host-item">
                     <span class="host-url">http://care14271.wd.business-cdn-8k.com</span>
@@ -580,6 +602,43 @@
             alert('عذراً، لم نتمكن من النسخ التلقائي.');
         });
     }
+
+    // دالة البحث الذكي واللحظي
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const filter = this.value.toLowerCase().trim();
+        const serverCards = document.querySelectorAll('.server-card');
+        const sections = document.querySelectorAll('.category-section');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        let totalVisibleCards = 0;
+
+        serverCards.forEach(card => {
+            const serverName = card.getAttribute('data-name').toLowerCase();
+            // إذا كان اسم السيرفر يحتوي على نص البحث، يظهر الكارت
+            if (serverName.includes(filter)) {
+                card.style.display = 'block';
+                totalVisibleCards++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // إخفاء الأقسام (Section) بالكامل إذا كانت لا تحتوي على أي كارت ظاهر
+        sections.forEach(section => {
+            const visibleCardsInSection = section.querySelectorAll('.server-card[style="display: block;"]').length;
+            if (visibleCardsInSection > 0 || filter === '') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // إظهار رسالة "لا توجد نتائج" إذا لم يطابق البحث أي سيرفر
+        if (totalVisibleCards === 0 && filter !== '') {
+            noResultsMessage.style.display = 'block';
+        } else {
+            noResultsMessage.style.display = 'none';
+        }
+    });
 </script>
 
 </body>
