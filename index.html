@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMARTERS HOSTS PORTAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SMARTERS PORTAL & PAYMENTS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
             --text-muted: #a0aec0;
             --border-color: #2d3748;
             --success-color: #2ecc71;
+            --tab-inactive: #242838;
         }
 
         * {
@@ -27,14 +28,22 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        body {
+        /* منع الخروج عن حدود الشاشة نهائياً للموبايل */
+        html, body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            padding: 40px 20px;
-            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            padding: 15px 10px;
+            line-height: 1.5;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -42,15 +51,13 @@
         /* الهيدر الرئيسي */
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--text-main);
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         header h1 span {
@@ -60,100 +67,149 @@
 
         header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
-        /* قسم البحث الاحترافي */
+        /* أزرار التنقل العلوية */
+        .navigation-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .tab-btn {
+            flex: 1;
+            max-width: 200px;
+            background-color: var(--tab-inactive);
+            color: var(--text-muted);
+            border: 2px solid var(--border-color);
+            padding: 12px 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .portal-section {
+            display: none;
+        }
+
+        .portal-section.active-section {
+            display: block !important;
+        }
+
+        /* قسم البحث */
         .search-container {
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            position: relative;
+            margin: 0 auto 25px auto;
+            width: 100%;
+            padding: 0 5px;
         }
 
         .search-input {
             width: 100%;
-            padding: 15px 25px;
-            font-size: 1.1rem;
+            padding: 12px 20px;
+            font-size: 1.05rem;
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 50px;
+            border-radius: 30px;
             color: #fff;
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
         .search-input:focus {
             border-color: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(204, 164, 59, 0.2);
         }
 
-        .search-input::placeholder {
-            color: var(--text-muted);
-            opacity: 0.7;
-        }
-
-        /* التقسيمات الكبرى (ECONOMY, VIP, etc.) */
+        /* الكروت والشبكات */
         .category-section {
-            margin-bottom: 60px;
-            transition: all 0.3s ease;
+            margin-bottom: 35px;
         }
 
         .category-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: var(--accent-gold);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-right: 5px solid var(--accent-gold);
-            padding-right: 15px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent-gold);
+            padding-right: 10px;
         }
 
-        /* شبكة السيرفرات داخل القسم */
         .servers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        /* كارت السيرفر */
+        @media (min-width: 768px) {
+            .servers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            }
+        }
+
+        /* ستايل الكروت الأساسي مع إضافة الأنيميشن المريح */
         .server-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+            border-radius: 10px;
+            padding: 15px;
+            position: relative;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .server-card:hover {
-            transform: translateY(-5px);
+        /* تأثير البروز والخط الأصفر المضيء عند الاختيار أو الوقوف على الكارت */
+        .server-card:hover, .server-card:active {
+            transform: translateY(-5px); /* بروز الكارت لأعلى */
             border-color: var(--accent-gold);
+            box-shadow: 0 12px 24px rgba(204, 164, 59, 0.15); /* إضاءة وظل خلف الكارت */
         }
 
         .server-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #fff;
             margin-bottom: 15px;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             border-bottom: 1px dashed var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-weight: bold;
+            position: relative;
         }
 
-        /* صف الهوست */
+        /* تأثير الشريط المضيء الذي يظهر أسفل الاسم عند التفاعل */
+        .server-name::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            box-shadow: 0 0 8px var(--accent-gold);
+            transition: width 0.25s ease;
+        }
+
+        .server-card:hover .server-name::after, .server-card:active .server-name::after {
+            width: 100%; /* الشريط الأصفر يمتد بالكامل */
+        }
+
+        /* عنصر الهوست المطور */
         .host-item {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 12px 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             gap: 10px;
         }
 
@@ -162,7 +218,7 @@
             color: #e2e8f0;
             word-break: break-all;
             direction: ltr;
-            text-align: right;
+            text-align: left;
             font-weight: 500;
         }
 
@@ -171,13 +227,14 @@
             background: var(--border-color);
             color: #fff;
             border: none;
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            padding: 8px 0;
+            font-size: 1rem;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
+            transition: background 0.15s ease;
+            width: 100%;
+            text-align: center;
         }
 
         .copy-btn:hover {
@@ -190,38 +247,65 @@
             color: #fff !important;
         }
 
-        /* التنبيهات الجانبية أو الملاحظات */
         .note {
-            background: rgba(204, 164, 59, 0.1);
-            border: 1px solid rgba(204, 164, 59, 0.3);
+            background: rgba(204, 164, 59, 0.08);
+            border: 1px solid rgba(204, 164, 59, 0.2);
             color: var(--accent-gold);
-            padding: 8px 12px;
+            padding: 8px;
             border-radius: 6px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
             text-align: center;
         }
 
-        /* رسالة عدم وجود نتائج */
         .no-results {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
-            margin: 40px 0;
+            margin: 30px 0;
             display: none;
         }
 
-        /* شاشات الموبايل */
-        @media (max-width: 768px) {
-            .servers-grid {
-                grid-template-columns: 1fr;
-            }
-            body {
-                padding: 20px 10px;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
+        /* ستايل قسم الدفع مع نفس تأثير البروز */
+        .payments-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .payment-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+        }
+
+        .payment-card:hover, .payment-card:active {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.1);
+            border-color: var(--success-color);
+        }
+
+        .payment-amount {
+            font-size: 1.3rem;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .payment-link-display {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            direction: ltr;
+            text-align: left;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.03);
         }
     </style>
 </head>
@@ -230,388 +314,461 @@
 <div class="container">
     
     <header>
-        <h1><span>SMARTERS</span> HOSTS PORTAL</h1>
-        <p>منصة إدارة ونسخ الهوستات </p>
+        <h1><span>SMARTERS</span> PORTAL</h1>
+        <p>منصة الإدارة الموحدة للهوستات والمدفوعات</p>
     </header>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 اكتب اسم السيرفر للبحث السريع...">
+    <div class="navigation-tabs">
+        <button class="tab-btn active" onclick="switchTab('hosts-section', this)">🌐 الهوستات</button>
+        <button class="tab-btn" onclick="switchTab('payments-section', this)">💳 المدفوعات</button>
     </div>
 
-    <div id="noResultsMessage" class="no-results">❌ عذراً، لا يوجد سيرفر بهذا الاسم!</div>
+    <div id="hosts-section" class="portal-section active-section">
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن السيرفر هنا...">
+        </div>
 
-    <section class="category-section">
-        <h2 class="category-title">قسم ECONOMY</h2>
-        <div class="servers-grid">
+        <div id="noResultsMessage" class="no-results">❌ لا يوجد سيرفر بهذا الاسم!</div>
+
+        <section class="category-section">
+            <h2 class="category-title">قسم ECONOMY</h2>
+            <div class="servers-grid">
+                
+                <div class="server-card" data-name="ktn">
+                    <div class="server-name">KTN</div>
+                    <div class="host-item">
+                        <span class="host-url">http://cdntrankt.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://cdntrankt.xyz', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://kgotn.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://kgotn.xyz', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://8547EZ4klLclam.ntclan.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://8547EZ4klLclam.ntclan.xyz', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="ceme">
+                    <div class="server-name">ceme</div>
+                    <div class="host-item">
+                        <span class="host-url">http://apk4k.org</span>
+                        <button class="copy-btn" onclick="copyText('http://apk4k.org', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://vlc.news</span>
+                        <button class="copy-btn" onclick="copyText('http://vlc.news', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="plume بلوم">
+                    <div class="server-name">plume</div>
+                    <div class="host-item">
+                        <span class="host-url">http://europe.cdneu.pro:80</span>
+                        <button class="copy-btn" onclick="copyText('http://europe.cdneu.pro:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://trial.dxna.me:80</span>
+                        <button class="copy-btn" onclick="copyText('http://trial.dxna.me:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="x">
+                    <div class="server-name">X</div>
+                    <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
+                    <div class="host-item">
+                        <span class="host-url">http://servx.pro:80</span>
+                        <button class="copy-btn" onclick="copyText('http://servx.pro:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم VIP ⭐</h2>
+            <div class="servers-grid">
+                
+                <div class="server-card" data-name="kasser الكاسر">
+                    <div class="server-name">kasser</div>
+                    <div class="host-item">
+                        <span class="host-url">http://ss.priv-spic.online:80</span>
+                        <button class="copy-btn" onclick="copyText('http://ss.priv-spic.online:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://smartka.shop:80</span>
+                        <button class="copy-btn" onclick="copyText('http://smartka.shop:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="modamer مدمر">
+                    <div class="server-name">modamer</div>
+                    <div class="host-item">
+                        <span class="host-url">http://almodamer.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://almodamer.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://jakiplayer.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://jakiplayer.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="dh">
+                    <div class="server-name">DH</div>
+                    <div class="host-item">
+                        <span class="host-url">http://renvioweb.online:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://renvioweb.online:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="maven">
+                    <div class="server-name">maven</div>
+                    <div class="note">⚠️ الافضل نجيب هوست من اللوحه</div>
+                    <div class="host-item">
+                        <span class="host-url">http://maveniptv.tv:2095</span>
+                        <button class="copy-btn" onclick="copyText('http://maveniptv.tv:2095', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://maventv.one:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://maventv.one:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="tv33">
+                    <div class="server-name">tv33</div>
+                    <div class="host-item">
+                        <span class="host-url">http://rianto.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://rianto.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="shamel شامل">
+                    <div class="server-name">shamel</div>
+                    <div class="host-item">
+                        <span class="host-url">http://lady8lulu.com</span>
+                        <button class="copy-btn" onclick="copyText('http://lady8lulu.com', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://27maspro4all.com</span>
+                        <button class="copy-btn" onclick="copyText('http://27maspro4all.com', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://abomohi.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://abomohi.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://masterioltd.com</span>
+                        <button class="copy-btn" onclick="copyText('http://masterioltd.com', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="dino دينو">
+                    <div class="server-name">DINO</div>
+                    <div class="note">الهوستات الخاصة بينا دينو</div>
+                    <div class="host-item">
+                        <span class="host-url">http://line.echodino.vip</span>
+                        <button class="copy-btn" onclick="copyText('http://line.echodino.vip', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://vpn.echodino.vip</span>
+                        <button class="copy-btn" onclick="copyText('http://vpn.echodino.vip', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="note">هوستات دينو العامة</div>
+                    <div class="host-item">
+                        <span class="host-url">http://line.dndnscloud.ru</span>
+                        <button class="copy-btn" onclick="copyText('http://line.dndnscloud.ru', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="max ماكس">
+                    <div class="server-name">MAX</div>
+                    <div class="host-item">
+                        <span class="host-url">http://max.m950.org:2052</span>
+                        <button class="copy-btn" onclick="copyText('http://max.m950.org:2052', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://silka.m3um9xplus.org:2052</span>
+                        <button class="copy-btn" onclick="copyText('http://silka.m3um9xplus.org:2052', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://max-smarters.org:2052</span>
+                        <button class="copy-btn" onclick="copyText('http://max-smarters.org:2052', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="hook هوك">
+                    <div class="server-name">HOOK</div>
+                    <div class="host-item">
+                        <span class="host-url">http://darkteam.vip:80</span>
+                        <button class="copy-btn" onclick="copyText('http://darkteam.vip:80', this)">نسخ الهوست ⭐ الأفضل</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://8kpro.lol:80</span>
+                        <button class="copy-btn" onclick="copyText('http://8kpro.lol:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://8k.lol:80</span>
+                        <button class="copy-btn" onclick="copyText('http://8k.lol:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://crazyiptv.vip</span>
+                        <button class="copy-btn" onclick="copyText('http://crazyiptv.vip', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://orien.live</span>
+                        <button class="copy-btn" onclick="copyText('http://orien.live', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://m3u8.lol:80</span>
+                        <button class="copy-btn" onclick="copyText('http://m3u8.lol:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://load1.lol:80</span>
+                        <button class="copy-btn" onclick="copyText('http://load1.lol:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://hookpro.site:80</span>
+                        <button class="copy-btn" onclick="copyText('http://hookpro.site:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="mega ميجا">
+                    <div class="server-name">mega</div>
+                    <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
+                    <div class="host-item">
+                        <span class="host-url">http://aldbaba.vip</span>
+                        <button class="copy-btn" onclick="copyText('http://aldbaba.vip', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://tvmega.pro</span>
+                        <button class="copy-btn" onclick="copyText('http://tvmega.pro', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://chpyyrtg.ott-smart.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://chpyyrtg.ott-smart.xyz', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://kwyzvaju.mexamo.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://kwyzvaju.mexamo.xyz', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://dpayrafj.mexamo.xyz</span>
+                        <button class="copy-btn" onclick="copyText('http://dpayrafj.mexamo.xyz', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="beno بينو">
+                    <div class="server-name">beno</div>
+                    <div class="host-item">
+                        <span class="host-url">http://beno8k.live:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://beno8k.live:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://s1.beno8kapp.it.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://s1.beno8kapp.it.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title" style="border-right-color: #00e5ff; color: #00e5ff;">قسم ULTRA 🔥</h2>
+            <div class="servers-grid">
+                
+                <div class="server-card" data-name="hulk هالك">
+                    <div class="server-name">HULK</div>
+                    <div class="host-item">
+                        <span class="host-url">http://hplayer.info:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://hplayer.info:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="neo نيو">
+                    <div class="server-name">neo</div>
+                    <div class="host-item">
+                        <span class="host-url">http://cf.business-cloud-neo.ru</span>
+                        <button class="copy-btn" onclick="copyText('http://cf.business-cloud-neo.ru', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="temu تيمو">
+                    <div class="server-name">TEMU</div>
+                    <div class="host-item">
+                        <span class="host-url">http://maripor.com</span>
+                        <button class="copy-btn" onclick="copyText('http://maripor.com', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://jokivip.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://jokivip.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://armorip.com</span>
+                        <button class="copy-btn" onclick="copyText('http://armorip.com', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="dar دار">
+                    <div class="server-name">DAR</div>
+                    <div class="host-item">
+                        <span class="host-url">http://darpro4k.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darpro4k.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://darplayer.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darplayer.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://darhome.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darhome.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://tv-fast.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://tv-fast.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="amigo أميجو">
+                    <div class="server-name">AMIGO</div>
+                    <div class="host-item">
+                        <span class="host-url">http://cf.business-cdn.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://cf.business-cdn.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://8kflow.xyz:80</span>
+                        <button class="copy-btn" onclick="copyText('http://8kflow.xyz:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://cf.cdn-24.net:80</span>
+                        <button class="copy-btn" onclick="copyText('http://cf.cdn-24.net:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="dlta دلتا">
+                    <div class="server-name">DLTA</div>
+                    <div class="host-item">
+                        <span class="host-url">http://dlta4k.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://dlta4k.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://d4kip.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://d4kip.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://dksip.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://dksip.com:80', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="4matic فور ماتيك">
+                    <div class="server-name">4MATIC</div>
+                    <div class="host-item">
+                        <span class="host-url">http://4ksmart.me</span>
+                        <button class="copy-btn" onclick="copyText('http://4ksmart.me', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <div class="server-card" data-name="strong zen سترونج زين">
+                    <div class="server-name">STRONG & ZEN</div>
+                    <div class="host-item">
+                        <span class="host-url">http://care14271.wd.business-cdn-8k.com</span>
+                        <button class="copy-btn" onclick="copyText('http://care14271.wd.business-cdn-8k.com', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div id="payments-section" class="portal-section">
+        <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 روابط الدفع بالكارت</h2>
+        
+        <div class="payments-layout">
             
-            <div class="server-card" data-name="ktn">
-                <div class="server-name">KTN</div>
-                <div class="host-item">
-                    <span class="host-url">http://cdntrankt.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://cdntrankt.xyz', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://kgotn.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://kgotn.xyz', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://8547EZ4klLclam.ntclan.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://8547EZ4klLclam.ntclan.xyz', this)">نسخ</button>
-                </div>
+            <div class="payment-card">
+                <div class="payment-amount">💶 20 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/seo-marketing-school-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/seo-marketing-school-course', this)">نسخ رابط الدفع</button>
             </div>
 
-            <div class="server-card" data-name="ceme">
-                <div class="server-name">ceme</div>
-                <div class="host-item">
-                    <span class="host-url">http://apk4k.org</span>
-                    <button class="copy-btn" onclick="copyText('http://apk4k.org', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://vlc.news</span>
-                    <button class="copy-btn" onclick="copyText('http://vlc.news', this)">نسخ</button>
-                </div>
+            <div class="payment-card">
+                <div class="payment-amount">💶 25 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/email-marketing-fundamentals-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/email-marketing-fundamentals-course', this)">نسخ رابط الدفع</button>
             </div>
 
-            <div class="server-card" data-name="plume بلوم">
-                <div class="server-name">plume</div>
-                <div class="host-item">
-                    <span class="host-url">http://europe.cdneu.pro:80</span>
-                    <button class="copy-btn" onclick="copyText('http://europe.cdneu.pro:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://trial.dxna.me:80</span>
-                    <button class="copy-btn" onclick="copyText('http://trial.dxna.me:80', this)">نسخ</button>
-                </div>
+            <div class="payment-card">
+                <div class="payment-amount">💶 30 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/affiliate-marketing-school-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/affiliate-marketing-school-course', this)">نسخ رابط الدفع</button>
             </div>
 
-            <div class="server-card" data-name="x">
-                <div class="server-name">X</div>
-                <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
-                <div class="host-item">
-                    <span class="host-url">http://servx.pro:80</span>
-                    <button class="copy-btn" onclick="copyText('http://servx.pro:80', this)">نسخ</button>
-                </div>
+            <div class="payment-card">
+                <div class="payment-amount">💶 35 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/content-marketing-champion-course/?checkout_id=b0e45cc7-0c5f-4de3-8557-97eb58534bd2</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/content-marketing-champion-course/?checkout_id=b0e45cc7-0c5f-4de3-8557-97eb58534bd2', this)">نسخ رابط الدفع</button>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-amount">💶 40 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/social-media-marketing-for-beginners-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/social-media-marketing-for-beginners-course', this)">نسخ رابط الدفع</button>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-amount">💶 45 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/digital-marketing-mastery-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/digital-marketing-mastery-course', this)">نسخ رابط الدفع</button>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-amount">💶 50 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/influencer-marketing-school-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/influencer-marketing-school-course', this)">نسخ رابط الدفع</button>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-amount">💶 60 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/buy/internet-marketing-for-complete-beginners-course</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/internet-marketing-for-complete-beginners-course', this)">نسخ رابط الدفع</button>
             </div>
 
         </div>
-    </section>
-
-    <section class="category-section">
-        <h2 class="category-title" style="--accent-gold: #ff4757; border-right-color: #ff4757;">قسم VIP ⭐</h2>
-        <div class="servers-grid">
-            
-            <div class="server-card" data-name="kasser الكاسر">
-                <div class="server-name">kasser</div>
-                <div class="host-item">
-                    <span class="host-url">http://ss.priv-spic.online:80</span>
-                    <button class="copy-btn" onclick="copyText('http://ss.priv-spic.online:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://smartka.shop:80</span>
-                    <button class="copy-btn" onclick="copyText('http://smartka.shop:80', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="modamer مدمر">
-                <div class="server-name">modamer</div>
-                <div class="host-item">
-                    <span class="host-url">http://almodamer.com:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://almodamer.com:8080', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://jakiplayer.xyz:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://jakiplayer.xyz:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="dh">
-                <div class="server-name">DH</div>
-                <div class="host-item">
-                    <span class="host-url">http://renvioweb.online:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://renvioweb.online:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="maven">
-                <div class="server-name">maven</div>
-                <div class="note">⚠️ الافضل نجيب هوست من اللوحه</div>
-                <div class="host-item">
-                    <span class="host-url">http://maveniptv.tv:2095</span>
-                    <button class="copy-btn" onclick="copyText('http://maveniptv.tv:2095', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://maventv.one:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://maventv.one:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="tv33">
-                <div class="server-name">tv33</div>
-                <div class="host-item">
-                    <span class="host-url">http://rianto.xyz:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://rianto.xyz:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="shamel شامل">
-                <div class="server-name">shamel</div>
-                <div class="host-item">
-                    <span class="host-url">http://lady8lulu.com</span>
-                    <button class="copy-btn" onclick="copyText('http://lady8lulu.com', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://27maspro4all.com</span>
-                    <button class="copy-btn" onclick="copyText('http://27maspro4all.com', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://abomohi.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://abomohi.com:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://masterioltd.com</span>
-                    <button class="copy-btn" onclick="copyText('http://masterioltd.com', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="dino دينو">
-                <div class="server-name">DINO</div>
-                <div class="note">الهوستات الخاصة بينا دينو</div>
-                <div class="host-item">
-                    <span class="host-url">http://line.echodino.vip</span>
-                    <button class="copy-btn" onclick="copyText('http://line.echodino.vip', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://vpn.echodino.vip</span>
-                    <button class="copy-btn" onclick="copyText('http://vpn.echodino.vip', this)">نسخ</button>
-                </div>
-                <div class="note">هوستات دينو العامة</div>
-                <div class="host-item">
-                    <span class="host-url">http://line.dndnscloud.ru</span>
-                    <button class="copy-btn" onclick="copyText('http://line.dndnscloud.ru', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="max ماكس">
-                <div class="server-name">MAX</div>
-                <div class="host-item">
-                    <span class="host-url">http://max.m950.org:2052</span>
-                    <button class="copy-btn" onclick="copyText('http://max.m950.org:2052', this)">نسخ ⭐ الأفضل</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://silka.m3um9xplus.org:2052</span>
-                    <button class="copy-btn" onclick="copyText('http://silka.m3um9xplus.org:2052', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://max-smarters.org:2052</span>
-                    <button class="copy-btn" onclick="copyText('http://max-smarters.org:2052', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="hook هوك">
-                <div class="server-name">HOOK</div>
-                <div class="host-item">
-                    <span class="host-url">http://darkteam.vip:80</span>
-                    <button class="copy-btn" onclick="copyText('http://darkteam.vip:80', this)">نسخ ⭐ الأفضل</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://8kpro.lol:80</span>
-                    <button class="copy-btn" onclick="copyText('http://8kpro.lol:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://8k.lol:80</span>
-                    <button class="copy-btn" onclick="copyText('http://8k.lol:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://crazyiptv.vip</span>
-                    <button class="copy-btn" onclick="copyText('http://crazyiptv.vip', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://orien.live</span>
-                    <button class="copy-btn" onclick="copyText('http://orien.live', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://m3u8.lol:80</span>
-                    <button class="copy-btn" onclick="copyText('http://m3u8.lol:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://load1.lol:80</span>
-                    <button class="copy-btn" onclick="copyText('http://load1.lol:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="hookpro.site:80</span>
-                    <button class="copy-btn" onclick="copyText('http://hookpro.site:80', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="mega ميجا">
-                <div class="server-name">mega</div>
-                <div class="note">⚠️ الافضل نجيب هوست جديد من اللوحه</div>
-                <div class="host-item">
-                    <span class="host-url">http://aldbaba.vip</span>
-                    <button class="copy-btn" onclick="copyText('http://aldbaba.vip', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://tvmega.pro</span>
-                    <button class="copy-btn" onclick="copyText('http://tvmega.pro', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://chpyyrtg.ott-smart.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://chpyyrtg.ott-smart.xyz', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://kwyzvaju.mexamo.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://kwyzvaju.mexamo.xyz', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://dpayrafj.mexamo.xyz</span>
-                    <button class="copy-btn" onclick="copyText('http://dpayrafj.mexamo.xyz', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="beno بينو">
-                <div class="server-name">beno</div>
-                <div class="host-item">
-                    <span class="host-url">http://beno8k.live:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://beno8k.live:8080', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://s1.beno8kapp.it.com:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://s1.beno8kapp.it.com:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="category-section">
-        <h2 class="category-title" style="--accent-gold: #00e5ff; border-right-color: #00e5ff;">قسم ULTRA 🔥</h2>
-        <div class="servers-grid">
-            
-            <div class="server-card" data-name="hulk هالك">
-                <div class="server-name">HULK</div>
-                <div class="host-item">
-                    <span class="host-url">http://hplayer.info:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://hplayer.info:8080', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="neo نيو">
-                <div class="server-name">neo</div>
-                <div class="host-item">
-                    <span class="host-url">http://cf.business-cloud-neo.ru</span>
-                    <button class="copy-btn" onclick="copyText('http://cf.business-cloud-neo.ru', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="temu تيمو">
-                <div class="server-name">TEMU</div>
-                <div class="host-item">
-                    <span class="host-url">http://maripor.com</span>
-                    <button class="copy-btn" onclick="copyText('http://maripor.com', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://jokivip.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://jokivip.com:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://armorip.com</span>
-                    <button class="copy-btn" onclick="copyText('http://armorip.com', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="dar دار">
-                <div class="server-name">DAR</div>
-                <div class="host-item">
-                    <span class="host-url">http://darpro4k.com:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://darpro4k.com:8080', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://darplayer.xyz:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://darplayer.xyz:8080', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://darhome.xyz:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://darhome.xyz:8080', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://tv-fast.xyz:8080</span>
-                    <button class="copy-btn" onclick="copyText('http://tv-fast.xyz:8080', this)">نسخ سمارترز</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="amigo أميجو">
-                <div class="server-name">AMIGO</div>
-                <div class="host-item">
-                    <span class="host-url">http://cf.business-cdn.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://cf.business-cdn.com:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://8kflow.xyz:80</span>
-                    <button class="copy-btn" onclick="copyText('http://8kflow.xyz:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://cf.cdn-24.net:80</span>
-                    <button class="copy-btn" onclick="copyText('http://cf.cdn-24.net:80', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="dlta دلتا">
-                <div class="server-name">DLTA</div>
-                <div class="host-item">
-                    <span class="host-url">http://dlta4k.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://dlta4k.com:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://d4kip.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://d4kip.com:80', this)">نسخ</button>
-                </div>
-                <div class="host-item">
-                    <span class="host-url">http://dksip.com:80</span>
-                    <button class="copy-btn" onclick="copyText('http://dksip.com:80', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="4matic فور ماتيك">
-                <div class="server-name">4MATIC</div>
-                <div class="host-item">
-                    <span class="host-url">http://4ksmart.me</span>
-                    <button class="copy-btn" onclick="copyText('http://4ksmart.me', this)">نسخ</button>
-                </div>
-            </div>
-
-            <div class="server-card" data-name="strong zen سترونج زين">
-                <div class="server-name">STRONG & ZEN</div>
-                <div class="host-item">
-                    <span class="host-url">http://care14271.wd.business-cdn-8k.com</span>
-                    <button class="copy-btn" onclick="copyText('http://care14271.wd.business-cdn-8k.com', this)">نسخ</button>
-                </div>
-            </div>
-
-        </div>
-    </section>
+    </div>
 
 </div>
 
 <script>
-    // دالة النسخ الذكية
+    // التبديل بين الأقسام
+    function switchTab(sectionId, button) {
+        document.querySelectorAll('.portal-section').forEach(section => {
+            section.classList.remove('active-section');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active-section');
+        button.classList.add('active');
+    }
+
+    // دالة النسخ للحافظة
     function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
             const originalText = button.innerText;
-            
-            button.innerText = 'تم النسخ! ✓';
+            button.innerText = 'تم النسخ بنجاح! ✓';
             button.classList.add('copied');
-            
             setTimeout(() => {
                 button.innerText = originalText;
                 button.classList.remove('copied');
-            }, 2000);
+            }, 1200);
         }).catch(err => {
-            console.error('فشل في نسخ الرابط: ', err);
-            alert('عذراً، لم نتمكن من النسخ التلقائي.');
+            console.error('فشل في النسخ: ', err);
         });
     }
 
-    // دالة البحث الذكي واللحظي
+    // محرك البحث التلقائي
     document.getElementById('searchInput').addEventListener('input', function() {
         const filter = this.value.toLowerCase().trim();
         const serverCards = document.querySelectorAll('.server-card');
@@ -621,7 +778,6 @@
 
         serverCards.forEach(card => {
             const serverName = card.getAttribute('data-name').toLowerCase();
-            // إذا كان اسم السيرفر يحتوي على نص البحث، يظهر الكارت
             if (serverName.includes(filter)) {
                 card.style.display = 'block';
                 totalVisibleCards++;
@@ -630,7 +786,6 @@
             }
         });
 
-        // إخفاء الأقسام (Section) بالكامل إذا كانت لا تحتوي على أي كارت ظاهر
         sections.forEach(section => {
             const visibleCardsInSection = section.querySelectorAll('.server-card[style="display: block;"]').length;
             if (visibleCardsInSection > 0 || filter === '') {
@@ -640,12 +795,7 @@
             }
         });
 
-        // إظهار رسالة "لا توجد نتائج" إذا لم يطابق البحث أي سيرفر
-        if (totalVisibleCards === 0 && filter !== '') {
-            noResultsMessage.style.display = 'block';
-        } else {
-            noResultsMessage.style.display = 'none';
-        }
+        noResultsMessage.style.display = (totalVisibleCards === 0 && filter !== '') ? 'block' : 'none';
     });
 </script>
 
