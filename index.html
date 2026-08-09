@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SMARTERS PORTAL & PAYMENTS</title>
-    <!-- :استيراد خط Tajawal من جوجل -->
+    <!-- استيراد خط Tajawal من جوجل -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -158,7 +158,6 @@
             }
         }
 
-        /* ستايل الكروت الأساسي مع إضافة الأنيميشن المريح */
         .server-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -168,11 +167,10 @@
             transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        /* تأثير البروز والخط الأصفر المضيء عند الاختيار أو الوقوف على الكارت */
         .server-card:hover, .server-card:active {
-            transform: translateY(-5px); /* بروز الكارت لأعلى */
+            transform: translateY(-5px);
             border-color: var(--accent-gold);
-            box-shadow: 0 12px 24px rgba(204, 164, 59, 0.15); /* إضاءة وظل خلف الكارت */
+            box-shadow: 0 12px 24px rgba(204, 164, 59, 0.15);
         }
 
         .server-name {
@@ -185,7 +183,6 @@
             position: relative;
         }
 
-        /* تأثير الشريط المضيء الذي يظهر أسفل الاسم عند التفاعل */
         .server-name::after {
             content: '';
             position: absolute;
@@ -199,10 +196,9 @@
         }
 
         .server-card:hover .server-name::after, .server-card:active .server-name::after {
-            width: 100%; /* الشريط الأصفر يمتد بالكامل */
+            width: 100%;
         }
 
-        /* عنصر الهوست المطور */
         .host-item {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -223,7 +219,6 @@
             font-weight: 500;
         }
 
-        /* أزرار النسخ */
         .copy-btn {
             background: var(--border-color);
             color: #fff;
@@ -252,11 +247,36 @@
             background: rgba(204, 164, 59, 0.08);
             border: 1px solid rgba(204, 164, 59, 0.2);
             color: var(--accent-gold);
-            padding: 8px;
+            padding: 10px;
             border-radius: 6px;
             font-size: 0.95rem;
             margin-bottom: 12px;
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .app-code-box {
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
             text-align: center;
+        }
+
+        .app-code-title {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .app-code-num {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
         }
 
         .no-results {
@@ -267,7 +287,6 @@
             display: none;
         }
 
-        /* ستايل قسم الدفع مع نفس تأثير البروز */
         .payments-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -339,12 +358,22 @@
             <h2 class="category-title">قسم ECONOMY</h2>
             <div class="servers-grid">
                 
-                <!-- سيرفر Soryana الجديد والمحدث في البداية -->
+                <!-- سيرفر Soryana ومضاف فيه تعليمات المشاكل وكود الداونلودر -->
                 <div class="server-card" data-name="soryana سوريانا">
                     <div class="server-name">Soryana</div>
                     <div class="host-item">
                         <span class="host-url">http://syriana4u.shop:80</span>
                         <button class="copy-btn" onclick="copyText('http://syriana4u.shop:80', this)">نسخ الهوست</button>
+                    </div>
+
+                    <div class="note">
+                        💡 **حل مشاكل أندرويد:** لو العميل بيواجه مشكلة يفضل استخدام تطبيق السيرفر الخاص (سوريانا برو بلس).
+                    </div>
+
+                    <div class="app-code-box">
+                        <div class="app-code-title">📱 كود برنامج Downloader:</div>
+                        <div class="app-code-num">7283828</div>
+                        <button class="copy-btn" style="background: rgba(0, 229, 255, 0.2); color: var(--accent-blue);" onclick="copyText('7283828', this)">نسخ كود التحميل</button>
                     </div>
                 </div>
 
