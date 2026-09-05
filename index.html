@@ -28,7 +28,6 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        /* منع الخروج عن حدود الشاشة للموبايل */
         html, body {
             background-color: var(--bg-dark);
             color: var(--text-main);
@@ -48,7 +47,6 @@
             margin: 0 auto;
         }
 
-        /* الهيدر الرئيسي */
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -70,7 +68,6 @@
             font-size: 1rem;
         }
 
-        /* أزرار التنقل العلوية */
         .navigation-tabs {
             display: flex;
             justify-content: center;
@@ -109,7 +106,95 @@
             display: block !important;
         }
 
-        /* قسم البحث */
+        /* كروت تحميل التطبيقات المباشرة */
+        .featured-apps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .featured-app-banner {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(204, 164, 59, 0.1) 100%);
+            border: 1.5px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 16px 14px;
+            box-shadow: 0 6px 18px rgba(0, 229, 255, 0.12);
+            text-align: center;
+        }
+
+        .featured-app-banner.secondary-app {
+            background: linear-gradient(135deg, rgba(204, 164, 59, 0.12) 0%, rgba(46, 204, 113, 0.1) 100%);
+            border-color: var(--accent-gold);
+            box-shadow: 0 6px 18px rgba(204, 164, 59, 0.12);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: #000;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .featured-badge.secondary-badge {
+            background: var(--accent-gold);
+        }
+
+        .featured-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .featured-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .code-display-box {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px dashed var(--accent-gold);
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .code-label {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 3px;
+        }
+
+        .code-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .banner-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .banner-btn {
+            flex: 1;
+            padding: 9px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
         .search-container {
             margin: 0 auto 25px auto;
             width: 100%;
@@ -132,7 +217,6 @@
             border-color: var(--accent-gold);
         }
 
-        /* الكروت والشبكات */
         .category-section {
             margin-bottom: 35px;
         }
@@ -326,6 +410,73 @@
             border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.03);
         }
+
+        .ria-card {
+            border: 2px solid #e67e22;
+            background: linear-gradient(180deg, rgba(230, 126, 34, 0.08) 0%, var(--card-bg) 100%);
+        }
+
+        .ria-badge {
+            display: inline-block;
+            background: #e67e22;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .ria-data-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ria-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-bottom: 6px;
+        }
+
+        .ria-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .ria-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .ria-val {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            direction: ltr;
+        }
+
+        .ria-warning {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            color: #ff6b6b;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .copy-group {
+            display: flex;
+            gap: 8px;
+        }
     </style>
 </head>
 <body>
@@ -344,6 +495,40 @@
 
     <div id="hosts-section" class="portal-section active-section">
         
+        <div class="featured-apps-container">
+            <div class="featured-app-banner">
+                <span class="featured-badge">التطبيق المشغل الأول </span>
+                <div class="featured-title">🚀 تحميل مشغل CELYA PLAYER للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تحميل المشغل مباشرة عن طريق إدخال كود التحميل داخل تطبيق <strong>Downloader</strong> على جهازك.
+                </div>
+                <div class="code-display-box">
+                    <div class="code-label">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">6824120</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('6824120', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق CELYA PLAYER مباشرة عبر إدخال كود التحميل (6824120) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+
+            <div class="featured-app-banner secondary-app">
+                <span class="featured-badge secondary-badge">التطبيق المشغل الثاني </span>
+                <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
+                </div>
+                <div class="code-display-box" style="border-color: var(--accent-gold);">
+                    <div class="code-label" style="color: var(--accent-gold);">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">1147977</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('1147977', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق Echoserver مباشرة عبر إدخال كود التحميل (1147977) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+        </div>
+
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث عن السيرفر هنا...">
         </div>
@@ -487,6 +672,10 @@
 
                 <div class="server-card" data-name="shamel شامل">
                     <div class="server-name">shamel</div>
+                    <div class="host-item">
+                        <span class="host-url">http://c.watchpro.xyz:80</span>
+                        <button class="copy-btn" onclick="copyText('http://c.watchpro.xyz:80', this)">نسخ الهوست</button>
+                    </div>
                     <div class="host-item">
                         <span class="host-url">http://lady8lulu.com</span>
                         <button class="copy-btn" onclick="copyText('http://lady8lulu.com', this)">نسخ الهوست</button>
@@ -732,10 +921,41 @@
     </div>
 
     <div id="payments-section" class="portal-section">
-        <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 روابط الدفع بالكارت</h2>
+        <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 خيارات الدفع المتاحة</h2>
         
         <div class="payments-layout">
             
+            <div class="payment-card ria-card">
+                <div class="ria-badge">تحويل نقدي / Ria Transfer</div>
+                
+                <div class="ria-data-box">
+                    <div class="ria-item">
+                        <span class="ria-label">الاسم بالكامل:</span>
+                        <span class="ria-val">Muhammed Riza Mimaroglu</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">رقم الهاتف:</span>
+                        <span class="ria-val">+905522202105</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">الدولة:</span>
+                        <span class="ria-val">تركيا (Turkey)</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">المدينة:</span>
+                        <span class="ria-val">Gaziantep</span>
+                    </div>
+                </div>
+
+                <div class="ria-warning">
+                    ⚠️ تنبيه للعميل: يرجى عدم كتابة أي شيء له علاقة بـ IPTV في سبب التحويل نهائياً!
+                </div>
+
+                <div class="copy-group">
+                    <button class="copy-btn" style="background: #e67e22;" onclick="copyText('التحويل باستخدام ( Ria ) :\nMuhammed Riza Mimaroglu\n+905522202105\nالبلد : تركيا\nاسم المدينة : Gaziantep\n(ملاحظة: لا تكتب أي شيء له علاقة بـ IPTV نهائياً)', this)">نسخ بيانات Ria كاملة</button>
+                </div>
+            </div>
+
             <div class="payment-card">
                 <div class="payment-amount">💶 20 Euro</div>
                 <div class="payment-link-display">https://mrmimaroglu.com/buy/seo-marketing-school-course</div>
@@ -790,7 +1010,6 @@
 </div>
 
 <script>
-    // التبديل بين الأقسام
     function switchTab(sectionId, button) {
         document.querySelectorAll('.portal-section').forEach(section => {
             section.classList.remove('active-section');
@@ -802,7 +1021,6 @@
         button.classList.add('active');
     }
 
-    // دالة النسخ للحافظة
     function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
             const originalText = button.innerText;
@@ -817,7 +1035,6 @@
         });
     }
 
-    // محرك البحث التلقائي
     document.getElementById('searchInput').addEventListener('input', function() {
         const filter = this.value.toLowerCase().trim();
         const serverCards = document.querySelectorAll('.server-card');
