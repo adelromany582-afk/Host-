@@ -68,24 +68,24 @@
             font-size: 1rem;
         }
 
+        /* أزرار التنقل الرئيسية العلوية (3 أقسام) */
         .navigation-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
             width: 100%;
         }
 
         .tab-btn {
             flex: 1;
-            max-width: 200px;
             background-color: var(--tab-inactive);
             color: var(--text-muted);
             border: 2px solid var(--border-color);
-            padding: 12px 10px;
-            font-size: 1rem;
+            padding: 12px 6px;
+            font-size: 0.95rem;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
@@ -106,99 +106,48 @@
             display: block !important;
         }
 
-        /* كروت تحميل التطبيقات المباشرة */
-        .featured-apps-container {
+        /* شريط الباقات (3 باقات فقط بدون عرض الكل) */
+        .host-categories-bar {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .featured-app-banner {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(204, 164, 59, 0.1) 100%);
-            border: 1.5px solid var(--accent-blue);
-            border-radius: 12px;
-            padding: 16px 14px;
-            box-shadow: 0 6px 18px rgba(0, 229, 255, 0.12);
-            text-align: center;
-        }
-
-        .featured-app-banner.secondary-app {
-            background: linear-gradient(135deg, rgba(204, 164, 59, 0.12) 0%, rgba(46, 204, 113, 0.1) 100%);
-            border-color: var(--accent-gold);
-            box-shadow: 0 6px 18px rgba(204, 164, 59, 0.12);
-        }
-
-        .featured-badge {
-            display: inline-block;
-            background: var(--accent-blue);
-            color: #000;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .featured-badge.secondary-badge {
-            background: var(--accent-gold);
-        }
-
-        .featured-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-
-        .featured-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .code-display-box {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px dashed var(--accent-gold);
-            padding: 8px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-
-        .code-label {
-            font-size: 0.85rem;
-            color: var(--accent-gold);
-            margin-bottom: 3px;
-        }
-
-        .code-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 3px;
-        }
-
-        .banner-actions {
-            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
+            padding: 5px 4px 10px 4px;
         }
 
-        .banner-btn {
+        .host-cat-btn {
             flex: 1;
-            padding: 9px 0;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 20px;
+            font-size: 0.95rem;
             font-weight: bold;
-            font-size: 0.9rem;
             cursor: pointer;
-            border: none;
             transition: all 0.2s ease;
+            text-align: center;
+            white-space: nowrap;
         }
 
+        .host-cat-btn:hover {
+            border-color: var(--accent-gold);
+            color: #fff;
+        }
+
+        .host-cat-btn.active {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(204, 164, 59, 0.3);
+        }
+
+        /* قسم البحث */
         .search-container {
-            margin: 0 auto 25px auto;
+            margin: 0 auto 20px auto;
             width: 100%;
-            padding: 0 5px;
+            padding: 0 4px;
         }
 
         .search-input {
@@ -218,7 +167,7 @@
         }
 
         .category-section {
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .category-title {
@@ -370,6 +319,96 @@
             display: none;
         }
 
+        /* قسم التطبيقات */
+        .featured-apps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .featured-app-banner {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(204, 164, 59, 0.1) 100%);
+            border: 1.5px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 18px 14px;
+            box-shadow: 0 6px 18px rgba(0, 229, 255, 0.12);
+            text-align: center;
+        }
+
+        .featured-app-banner.secondary-app {
+            background: linear-gradient(135deg, rgba(204, 164, 59, 0.12) 0%, rgba(46, 204, 113, 0.1) 100%);
+            border-color: var(--accent-gold);
+            box-shadow: 0 6px 18px rgba(204, 164, 59, 0.12);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: #000;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .featured-badge.secondary-badge {
+            background: var(--accent-gold);
+        }
+
+        .featured-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .featured-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .code-display-box {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px dashed var(--accent-gold);
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .code-label {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 3px;
+        }
+
+        .code-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .banner-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .banner-btn {
+            flex: 1;
+            padding: 9px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        /* قسم المدفوعات */
         .payments-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -488,45 +527,21 @@
         <p>منصة الإدارة الموحدة للهوستات والمدفوعات</p>
     </header>
 
+    <!-- الأقسام الثلاثة الرئيسية من الأعلى -->
     <div class="navigation-tabs">
         <button class="tab-btn active" onclick="switchTab('hosts-section', this)">🌐 الهوستات</button>
+        <button class="tab-btn" onclick="switchTab('apps-section', this)">📲 التطبيقات</button>
         <button class="tab-btn" onclick="switchTab('payments-section', this)">💳 المدفوعات</button>
     </div>
 
+    <!-- ==================== 1. قسم الهوستات ==================== -->
     <div id="hosts-section" class="portal-section active-section">
         
-        <div class="featured-apps-container">
-            <div class="featured-app-banner">
-                <span class="featured-badge">التطبيق المشغل الأول </span>
-                <div class="featured-title">🚀 تحميل مشغل CELYA PLAYER للأجهزة الذكية</div>
-                <div class="featured-desc">
-                    يمكنك تحميل المشغل مباشرة عن طريق إدخال كود التحميل داخل تطبيق <strong>Downloader</strong> على جهازك.
-                </div>
-                <div class="code-display-box">
-                    <div class="code-label">كود التحميل المباشر (Downloader Code):</div>
-                    <div class="code-number">6824120</div>
-                </div>
-                <div class="banner-actions">
-                    <button class="banner-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('6824120', this)">نسخ الكود فقط</button>
-                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق CELYA PLAYER مباشرة عبر إدخال كود التحميل (6824120) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
-                </div>
-            </div>
-
-            <div class="featured-app-banner secondary-app">
-                <span class="featured-badge secondary-badge">التطبيق المشغل الثاني </span>
-                <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
-                <div class="featured-desc">
-                    يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
-                </div>
-                <div class="code-display-box" style="border-color: var(--accent-gold);">
-                    <div class="code-label" style="color: var(--accent-gold);">كود التحميل المباشر (Downloader Code):</div>
-                    <div class="code-number">1147977</div>
-                </div>
-                <div class="banner-actions">
-                    <button class="banner-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('1147977', this)">نسخ الكود فقط</button>
-                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق Echoserver مباشرة عبر إدخال كود التحميل (1147977) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
-                </div>
-            </div>
+        <!-- شريط الباقات الثلاثة (بدون عرض الكل) -->
+        <div class="host-categories-bar">
+            <button class="host-cat-btn active" onclick="filterHostCategory('cat-economy', this)">الاقتصادية</button>
+            <button class="host-cat-btn" onclick="filterHostCategory('cat-vip', this)">VIP</button>
+            <button class="host-cat-btn" onclick="filterHostCategory('cat-ultra', this)">الخارقة (Ultra)</button>
         </div>
 
         <div class="search-container">
@@ -535,10 +550,12 @@
 
         <div id="noResultsMessage" class="no-results">❌ لا يوجد سيرفر بهذا الاسم!</div>
 
-        <section class="category-section">
-            <h2 class="category-title">قسم ECONOMY</h2>
+        <!-- SECTION: ECONOMY (سوريانا في الأول) - مفعلة افتراضياً -->
+        <section id="cat-economy" class="category-section" style="display: block;">
+            <h2 class="category-title">قسم الباقة الاقتصادية</h2>
             <div class="servers-grid">
                 
+                <!-- 1. سوريانا الأول -->
                 <div class="server-card" data-name="soryana سوريانا">
                     <div class="server-name">Soryana</div>
                     <div class="host-item">
@@ -557,6 +574,7 @@
                     </div>
                 </div>
 
+                <!-- باقي سيرفرات الاقتصادية -->
                 <div class="server-card" data-name="ktn">
                     <div class="server-name">KTN</div>
                     <div class="host-item">
@@ -609,10 +627,25 @@
             </div>
         </section>
 
-        <section class="category-section">
-            <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم VIP ⭐</h2>
+        <!-- SECTION: VIP (المدمر ثم كاسر ثم شامل ثم الباقي) - مخفية افتراضياً -->
+        <section id="cat-vip" class="category-section" style="display: none;">
+            <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم باقة VIP ⭐</h2>
             <div class="servers-grid">
                 
+                <!-- 1. المدمر الأول -->
+                <div class="server-card" data-name="modamer مدمر">
+                    <div class="server-name">modamer</div>
+                    <div class="host-item">
+                        <span class="host-url">http://almodamer.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://almodamer.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://jakiplayer.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://jakiplayer.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
+                <!-- 2. كاسر الثاني -->
                 <div class="server-card" data-name="kasser الكاسر">
                     <div class="server-name">kasser</div>
                     <div class="host-item">
@@ -629,18 +662,36 @@
                     </div>
                 </div>
 
-                <div class="server-card" data-name="modamer مدمر">
-                    <div class="server-name">modamer</div>
+                <!-- 3. شامل الثالث -->
+                <div class="server-card" data-name="shamel شامل">
+                    <div class="server-name">shamel</div>
                     <div class="host-item">
-                        <span class="host-url">http://almodamer.com:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://almodamer.com:8080', this)">نسخ الهوست</button>
+                        <span class="host-url">http://watchit.watch:80</span>
+                        <button class="copy-btn" onclick="copyText('http://watchit.watch:80', this)">نسخ الهوست</button>
                     </div>
                     <div class="host-item">
-                        <span class="host-url">http://jakiplayer.xyz:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://jakiplayer.xyz:8080', this)">نسخ الهوست</button>
+                        <span class="host-url">http://c.watchpro.xyz:80</span>
+                        <button class="copy-btn" onclick="copyText('http://c.watchpro.xyz:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://lady8lulu.com</span>
+                        <button class="copy-btn" onclick="copyText('http://lady8lulu.com', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://27maspro4all.com</span>
+                        <button class="copy-btn" onclick="copyText('http://27maspro4all.com', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://abomohi.com:80</span>
+                        <button class="copy-btn" onclick="copyText('http://abomohi.com:80', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://masterioltd.com</span>
+                        <button class="copy-btn" onclick="copyText('http://masterioltd.com', this)">نسخ الهوست</button>
                     </div>
                 </div>
 
+                <!-- باقي سيرفرات VIP -->
                 <div class="server-card" data-name="dh">
                     <div class="server-name">DH</div>
                     <div class="host-item">
@@ -667,30 +718,6 @@
                     <div class="host-item">
                         <span class="host-url">http://rianto.xyz:8080</span>
                         <button class="copy-btn" onclick="copyText('http://rianto.xyz:8080', this)">نسخ الهوست</button>
-                    </div>
-                </div>
-
-                <div class="server-card" data-name="shamel شامل">
-                    <div class="server-name">shamel</div>
-                    <div class="host-item">
-                        <span class="host-url">http://c.watchpro.xyz:80</span>
-                        <button class="copy-btn" onclick="copyText('http://c.watchpro.xyz:80', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://lady8lulu.com</span>
-                        <button class="copy-btn" onclick="copyText('http://lady8lulu.com', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://27maspro4all.com</span>
-                        <button class="copy-btn" onclick="copyText('http://27maspro4all.com', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://abomohi.com:80</span>
-                        <button class="copy-btn" onclick="copyText('http://abomohi.com:80', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://masterioltd.com</span>
-                        <button class="copy-btn" onclick="copyText('http://masterioltd.com', this)">نسخ الهوست</button>
                     </div>
                 </div>
 
@@ -804,18 +831,37 @@
             </div>
         </section>
 
-        <section class="category-section">
-            <h2 class="category-title" style="border-right-color: #00e5ff; color: #00e5ff;">قسم ULTRA 🔥</h2>
+        <!-- SECTION: ULTRA (دار ثم نيو ثم الباقي) - مخفية افتراضياً -->
+        <section id="cat-ultra" class="category-section" style="display: none;">
+            <h2 class="category-title" style="border-right-color: #00e5ff; color: #00e5ff;">قسم الباقة الخارقة (ULTRA) 🔥</h2>
             <div class="servers-grid">
                 
-                <div class="server-card" data-name="hulk هالك">
-                    <div class="server-name">HULK</div>
+                <!-- 1. دار الأول -->
+                <div class="server-card" data-name="dar دار">
+                    <div class="server-name">DAR</div>
                     <div class="host-item">
-                        <span class="host-url">http://hplayer.info:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://hplayer.info:8080', this)">نسخ الهوست</button>
+                        <span class="host-url">http://d3m65421.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://d3m65421.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://darpro4k.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darpro4k.com:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://darplayer.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darplayer.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://darhome.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://darhome.xyz:8080', this)">نسخ الهوست</button>
+                    </div>
+                    <div class="host-item">
+                        <span class="host-url">http://tv-fast.xyz:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://tv-fast.xyz:8080', this)">نسخ الهوست</button>
                     </div>
                 </div>
 
+                <!-- 2. نيو الثاني -->
                 <div class="server-card" data-name="neo نيو">
                     <div class="server-name">neo</div>
                     <div class="host-item">
@@ -832,6 +878,15 @@
                     </div>
                 </div>
 
+                <!-- باقي سيرفرات ULTRA -->
+                <div class="server-card" data-name="hulk هالك">
+                    <div class="server-name">HULK</div>
+                    <div class="host-item">
+                        <span class="host-url">http://hplayer.info:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://hplayer.info:8080', this)">نسخ الهوست</button>
+                    </div>
+                </div>
+
                 <div class="server-card" data-name="temu تيمو">
                     <div class="server-name">TEMU</div>
                     <div class="host-item">
@@ -845,26 +900,6 @@
                     <div class="host-item">
                         <span class="host-url">http://armorip.com</span>
                         <button class="copy-btn" onclick="copyText('http://armorip.com', this)">نسخ الهوست</button>
-                    </div>
-                </div>
-
-                <div class="server-card" data-name="dar دار">
-                    <div class="server-name">DAR</div>
-                    <div class="host-item">
-                        <span class="host-url">http://darpro4k.com:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://darpro4k.com:8080', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://darplayer.xyz:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://darplayer.xyz:8080', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://darhome.xyz:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://darhome.xyz:8080', this)">نسخ الهوست</button>
-                    </div>
-                    <div class="host-item">
-                        <span class="host-url">http://tv-fast.xyz:8080</span>
-                        <button class="copy-btn" onclick="copyText('http://tv-fast.xyz:8080', this)">نسخ الهوست</button>
                     </div>
                 </div>
 
@@ -920,6 +955,48 @@
         </section>
     </div>
 
+    <!-- ==================== 2. قسم التطبيقات المستقل ==================== -->
+    <div id="apps-section" class="portal-section">
+        <h2 class="category-title" style="border-right-color: var(--accent-blue); color: var(--accent-blue);">📲 تطبيقات التحميل المباشر</h2>
+        
+        <div class="featured-apps-container">
+            <!-- مشغل CELYA PLAYER -->
+            <div class="featured-app-banner">
+                <span class="featured-badge">المشغل المعتمد الأول</span>
+                <div class="featured-title">🚀 تحميل مشغل CELYA PLAYER للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تحميل المشغل مباشرة عن طريق إدخال كود التحميل داخل تطبيق <strong>Downloader</strong> على جهازك.
+                </div>
+                <div class="code-display-box">
+                    <div class="code-label">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">6824120</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('6824120', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق CELYA PLAYER مباشرة عبر إدخال كود التحميل (6824120) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+
+            <!-- تطبيق Echoserver -->
+            <div class="featured-app-banner secondary-app">
+                <span class="featured-badge secondary-badge">تطبيق البث الاحتياطي</span>
+                <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
+                </div>
+                <div class="code-display-box" style="border-color: var(--accent-gold);">
+                    <div class="code-label" style="color: var(--accent-gold);">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">1147977</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('1147977', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق Echoserver مباشرة عبر إدخال كود التحميل (1147977) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 3. قسم المدفوعات ==================== -->
     <div id="payments-section" class="portal-section">
         <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 خيارات الدفع المتاحة</h2>
         
@@ -999,6 +1076,12 @@
             </div>
 
             <div class="payment-card">
+                <div class="payment-amount">💶 55 Euro</div>
+                <div class="payment-link-display">https://mrmimaroglu.com/checkout-2/?line_items%5B0%5D%5Bprice_id%5D=d4b75bff-174b-4767-9f6e-a702c97fee3d&line_items%5B0%5D%5Bquantity%5D=1</div>
+                <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/checkout-2/?line_items%5B0%5D%5Bprice_id%5D=d4b75bff-174b-4767-9f6e-a702c97fee3d&line_items%5B0%5D%5Bquantity%5D=1', this)">نسخ رابط الدفع</button>
+            </div>
+
+            <div class="payment-card">
                 <div class="payment-amount">💶 60 Euro</div>
                 <div class="payment-link-display">https://mrmimaroglu.com/buy/internet-marketing-for-complete-beginners-course</div>
                 <button class="copy-btn" onclick="copyText('https://mrmimaroglu.com/buy/internet-marketing-for-complete-beginners-course', this)">نسخ رابط الدفع</button>
@@ -1010,6 +1093,7 @@
 </div>
 
 <script>
+    // التبديل بين الأقسام الرئيسية الثلاثة
     function switchTab(sectionId, button) {
         document.querySelectorAll('.portal-section').forEach(section => {
             section.classList.remove('active-section');
@@ -1021,6 +1105,29 @@
         button.classList.add('active');
     }
 
+    // تصفية وعرض باقة واحدة فقط في كل مرة
+    function filterHostCategory(catId, button) {
+        document.querySelectorAll('.host-cat-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+
+        const sections = document.querySelectorAll('#hosts-section .category-section');
+        sections.forEach(section => {
+            if (section.id === catId) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+
+        // إعادة ضبط حقل البحث بعد التبديل
+        document.getElementById('searchInput').value = '';
+        document.querySelectorAll('.server-card').forEach(card => card.style.display = 'block');
+        document.getElementById('noResultsMessage').style.display = 'none';
+    }
+
+    // دالة النسخ مع التأكيد
     function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
             const originalText = button.innerText;
@@ -1035,10 +1142,13 @@
         });
     }
 
+    // محرك البحث التلقائي داخل الباقة المفتوحة حالياً
     document.getElementById('searchInput').addEventListener('input', function() {
         const filter = this.value.toLowerCase().trim();
-        const serverCards = document.querySelectorAll('.server-card');
-        const sections = document.querySelectorAll('.category-section');
+        const activeSection = document.querySelector('#hosts-section .category-section[style*="display: block"]');
+        if (!activeSection) return;
+
+        const serverCards = activeSection.querySelectorAll('.server-card');
         const noResultsMessage = document.getElementById('noResultsMessage');
         let totalVisibleCards = 0;
 
@@ -1049,15 +1159,6 @@
                 totalVisibleCards++;
             } else {
                 card.style.display = 'none';
-            }
-        });
-
-        sections.forEach(section => {
-            const visibleCardsInSection = section.querySelectorAll('.server-card[style="display: block;"]').length;
-            if (visibleCardsInSection > 0 || filter === '') {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
             }
         });
 
