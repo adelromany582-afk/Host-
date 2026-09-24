@@ -106,7 +106,7 @@
             display: block !important;
         }
 
-        /* شريط الباقات (3 باقات فقط بدون عرض الكل) */
+        /* شريط الباقات (3 باقات فقط) */
         .host-categories-bar {
             display: flex;
             align-items: center;
@@ -529,19 +529,19 @@
 
     <!-- الأقسام الثلاثة الرئيسية من الأعلى -->
     <div class="navigation-tabs">
-        <button class="tab-btn active" onclick="switchTab('hosts-section', this)">🌐 الهوستات</button>
-        <button class="tab-btn" onclick="switchTab('apps-section', this)">📲 التطبيقات</button>
-        <button class="tab-btn" onclick="switchTab('payments-section', this)">💳 المدفوعات</button>
+        <button id="tab-btn-hosts-section" class="tab-btn active" onclick="switchTab('hosts-section', this)">🌐 الهوستات</button>
+        <button id="tab-btn-apps-section" class="tab-btn" onclick="switchTab('apps-section', this)">📲 التطبيقات</button>
+        <button id="tab-btn-payments-section" class="tab-btn" onclick="switchTab('payments-section', this)">💳 المدفوعات</button>
     </div>
 
     <!-- ==================== 1. قسم الهوستات ==================== -->
     <div id="hosts-section" class="portal-section active-section">
         
-        <!-- شريط الباقات الثلاثة (بدون عرض الكل) -->
+        <!-- شريط الباقات الثلاثة -->
         <div class="host-categories-bar">
-            <button class="host-cat-btn active" onclick="filterHostCategory('cat-economy', this)">الاقتصادية</button>
-            <button class="host-cat-btn" onclick="filterHostCategory('cat-vip', this)">VIP</button>
-            <button class="host-cat-btn" onclick="filterHostCategory('cat-ultra', this)">الخارقة (Ultra)</button>
+            <button id="cat-btn-cat-economy" class="host-cat-btn active" onclick="filterHostCategory('cat-economy', this)">الاقتصادية</button>
+            <button id="cat-btn-cat-vip" class="host-cat-btn" onclick="filterHostCategory('cat-vip', this)">VIP</button>
+            <button id="cat-btn-cat-ultra" class="host-cat-btn" onclick="filterHostCategory('cat-ultra', this)">الخارقة (Ultra)</button>
         </div>
 
         <div class="search-container">
@@ -550,14 +550,18 @@
 
         <div id="noResultsMessage" class="no-results">❌ لا يوجد سيرفر بهذا الاسم!</div>
 
-        <!-- SECTION: ECONOMY (سوريانا في الأول) - مفعلة افتراضياً -->
+        <!-- SECTION: ECONOMY (سوريانا في الأول مع الهوست الجديد) -->
         <section id="cat-economy" class="category-section" style="display: block;">
             <h2 class="category-title">قسم الباقة الاقتصادية</h2>
             <div class="servers-grid">
                 
-                <!-- 1. سوريانا الأول -->
+                <!-- 1. سوريانا الأول مع الهوست الجديد بالأعلى -->
                 <div class="server-card" data-name="soryana سوريانا">
                     <div class="server-name">Soryana</div>
+                    <div class="host-item">
+                        <span class="host-url">http://syr4ksa.shop:80</span>
+                        <button class="copy-btn" onclick="copyText('http://syr4ksa.shop:80', this)">نسخ الهوست</button>
+                    </div>
                     <div class="host-item">
                         <span class="host-url">http://syriana4u.shop:80</span>
                         <button class="copy-btn" onclick="copyText('http://syriana4u.shop:80', this)">نسخ الهوست</button>
@@ -627,7 +631,7 @@
             </div>
         </section>
 
-        <!-- SECTION: VIP (المدمر ثم كاسر ثم شامل ثم الباقي) - مخفية افتراضياً -->
+        <!-- SECTION: VIP (المدمر ثم كاسر ثم شامل ثم الباقي) -->
         <section id="cat-vip" class="category-section" style="display: none;">
             <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم باقة VIP ⭐</h2>
             <div class="servers-grid">
@@ -831,7 +835,7 @@
             </div>
         </section>
 
-        <!-- SECTION: ULTRA (دار ثم نيو ثم الباقي) - مخفية افتراضياً -->
+        <!-- SECTION: ULTRA (دار ثم نيو ثم الباقي) -->
         <section id="cat-ultra" class="category-section" style="display: none;">
             <h2 class="category-title" style="border-right-color: #00e5ff; color: #00e5ff;">قسم الباقة الخارقة (ULTRA) 🔥</h2>
             <div class="servers-grid">
@@ -1093,7 +1097,7 @@
 </div>
 
 <script>
-    // التبديل بين الأقسام الرئيسية الثلاثة
+    // التبديل بين الأقسام الرئيسية الثلاثة مع حفظ المكان في ذاكرة المتصفح
     function switchTab(sectionId, button) {
         document.querySelectorAll('.portal-section').forEach(section => {
             section.classList.remove('active-section');
@@ -1101,16 +1105,23 @@
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.getElementById(sectionId).classList.add('active-section');
-        button.classList.add('active');
+        
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) targetSection.classList.add('active-section');
+        if (button) button.classList.add('active');
+
+        // حفظ القسم المختار
+        try {
+            localStorage.setItem('smarters_active_tab', sectionId);
+        } catch (e) {}
     }
 
-    // تصفية وعرض باقة واحدة فقط في كل مرة
+    // تصفية وعرض باقة واحدة فقط مع حفظ الباقة المختارة في ذاكرة المتصفح
     function filterHostCategory(catId, button) {
         document.querySelectorAll('.host-cat-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        button.classList.add('active');
+        if (button) button.classList.add('active');
 
         const sections = document.querySelectorAll('#hosts-section .category-section');
         sections.forEach(section => {
@@ -1121,11 +1132,33 @@
             }
         });
 
+        // حفظ الباقة المختارة
+        try {
+            localStorage.setItem('smarters_active_host_cat', catId);
+        } catch (e) {}
+
         // إعادة ضبط حقل البحث بعد التبديل
         document.getElementById('searchInput').value = '';
         document.querySelectorAll('.server-card').forEach(card => card.style.display = 'block');
         document.getElementById('noResultsMessage').style.display = 'none';
     }
+
+    // استرجاع آخر مكان كان واقف فيه المستخدم عند فتح الصفحة
+    window.addEventListener('DOMContentLoaded', () => {
+        try {
+            const savedTab = localStorage.getItem('smarters_active_tab');
+            if (savedTab && document.getElementById(savedTab)) {
+                const tabBtn = document.getElementById(`tab-btn-${savedTab}`);
+                switchTab(savedTab, tabBtn);
+            }
+
+            const savedCat = localStorage.getItem('smarters_active_host_cat');
+            if (savedCat && document.getElementById(savedCat)) {
+                const catBtn = document.getElementById(`cat-btn-${savedCat}`);
+                filterHostCategory(savedCat, catBtn);
+            }
+        } catch (e) {}
+    });
 
     // دالة النسخ مع التأكيد
     function copyText(text, button) {
