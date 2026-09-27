@@ -512,6 +512,24 @@
             text-align: center;
         }
 
+        /* كروت عناوين البنوك */
+        .bank-address-card {
+            border: 2px solid var(--accent-blue);
+            background: linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, var(--card-bg) 100%);
+        }
+
+        .bank-badge {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            align-self: flex-start;
+        }
+
         .copy-group {
             display: flex;
             gap: 8px;
@@ -636,9 +654,13 @@
             <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم باقة VIP ⭐</h2>
             <div class="servers-grid">
                 
-                <!-- 1. المدمر الأول -->
+                <!-- 1. المدمر الأول (مع الهوست الجديد) -->
                 <div class="server-card" data-name="modamer مدمر">
                     <div class="server-name">modamer</div>
+                    <div class="host-item">
+                        <span class="host-url">http://almodamer4k.com:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://almodamer4k.com:8080', this)">نسخ الهوست</button>
+                    </div>
                     <div class="host-item">
                         <span class="host-url">http://almodamer.com:8080</span>
                         <button class="copy-btn" onclick="copyText('http://almodamer.com:8080', this)">نسخ الهوست</button>
@@ -983,7 +1005,7 @@
 
             <!-- تطبيق Echoserver -->
             <div class="featured-app-banner secondary-app">
-                <span class="featured-badge secondary-badge">تطبيق البث الاحتياطي</span>
+                <span class="featured-badge secondary-badge"> المشغل المعتمد الثاني  </span>
                 <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
                 <div class="featured-desc">
                     يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
@@ -1000,12 +1022,31 @@
         </div>
     </div>
 
-    <!-- ==================== 3. قسم المدفوعات ==================== -->
+    <!-- ==================== 3. قسم المدفوعات وعناوين البنوك ==================== -->
     <div id="payments-section" class="portal-section">
-        <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 خيارات الدفع المتاحة</h2>
+        <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 خيارات الدفع وعناوين البنوك</h2>
         
         <div class="payments-layout">
             
+            <!-- عنوان البنك البلغاري -->
+            <div class="payment-card bank-address-card">
+                <div class="bank-badge">🏢 عنوان البنك البلغاري (Bulgarian Bank Address)</div>
+                <div class="payment-link-display" style="color: #fff; font-weight: bold; background: rgba(0,0,0,0.35);">
+                    TSARIGRADSKO SHOSE BLVD. 111P, SOFIA, Bulgaria
+                </div>
+                <button class="copy-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('TSARIGRADSKO SHOSE BLVD. 111P, SOFIA, Bulgaria', this)">نسخ عنوان البنك البلغاري</button>
+            </div>
+
+            <!-- عنوان بنك زين / ليتوانيا -->
+            <div class="payment-card bank-address-card" style="border-color: var(--accent-gold); background: linear-gradient(180deg, rgba(204, 164, 59, 0.08) 0%, var(--card-bg) 100%);">
+                <div class="bank-badge" style="background: var(--accent-gold);">🏢 عنوان بنك زين / ليتوانيا (Zen Bank - Lithuania)</div>
+                <div class="payment-link-display" style="color: #fff; font-weight: bold; background: rgba(0,0,0,0.35);">
+                    Lvivo str. 25-104, LT-09320 Vilnius, Lithuania (مبنى 1)
+                </div>
+                <button class="copy-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('Lvivo str. 25-104, LT-09320 Vilnius, Lithuania', this)">نسخ عنوان بنك زين</button>
+            </div>
+
+            <!-- كارت تحويل Ria -->
             <div class="payment-card ria-card">
                 <div class="ria-badge">تحويل نقدي / Ria Transfer</div>
                 
@@ -1037,6 +1078,7 @@
                 </div>
             </div>
 
+            <!-- روابط الدفع بالكارت -->
             <div class="payment-card">
                 <div class="payment-amount">💶 20 Euro</div>
                 <div class="payment-link-display">https://mrmimaroglu.com/buy/seo-marketing-school-course</div>
@@ -1097,7 +1139,7 @@
 </div>
 
 <script>
-    // التبديل بين الأقسام الرئيسية الثلاثة مع حفظ المكان في ذاكرة المتصفح
+    // التبديل بين الأقسام الرئيسية مع الحفظ التلقائي في الذاكرة
     function switchTab(sectionId, button) {
         document.querySelectorAll('.portal-section').forEach(section => {
             section.classList.remove('active-section');
@@ -1110,13 +1152,12 @@
         if (targetSection) targetSection.classList.add('active-section');
         if (button) button.classList.add('active');
 
-        // حفظ القسم المختار
         try {
             localStorage.setItem('smarters_active_tab', sectionId);
         } catch (e) {}
     }
 
-    // تصفية وعرض باقة واحدة فقط مع حفظ الباقة المختارة في ذاكرة المتصفح
+    // تصفية وعرض باقة واحدة فقط مع الحفظ التلقائي في الذاكرة
     function filterHostCategory(catId, button) {
         document.querySelectorAll('.host-cat-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -1132,18 +1173,17 @@
             }
         });
 
-        // حفظ الباقة المختارة
-        try {
-            localStorage.setItem('smarters_active_host_cat', catId);
-        } catch (e) {}
-
-        // إعادة ضبط حقل البحث بعد التبديل
+        // إعادة ضبط البحث
         document.getElementById('searchInput').value = '';
         document.querySelectorAll('.server-card').forEach(card => card.style.display = 'block');
         document.getElementById('noResultsMessage').style.display = 'none';
+
+        try {
+            localStorage.setItem('smarters_active_host_cat', catId);
+        } catch (e) {}
     }
 
-    // استرجاع آخر مكان كان واقف فيه المستخدم عند فتح الصفحة
+    // استعادة آخر قسم وآخر باقة تم فتحها عند إعادة تحميل الصفحة
     window.addEventListener('DOMContentLoaded', () => {
         try {
             const savedTab = localStorage.getItem('smarters_active_tab');
