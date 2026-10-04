@@ -455,6 +455,11 @@
             background: linear-gradient(180deg, rgba(230, 126, 34, 0.08) 0%, var(--card-bg) 100%);
         }
 
+        .uk-card {
+            border: 2px solid #9b59b6;
+            background: linear-gradient(180deg, rgba(155, 89, 182, 0.1) 0%, var(--card-bg) 100%);
+        }
+
         .ria-badge {
             display: inline-block;
             background: #e67e22;
@@ -464,6 +469,19 @@
             font-size: 0.9rem;
             font-weight: bold;
             margin-bottom: 5px;
+            align-self: flex-start;
+        }
+
+        .uk-badge {
+            display: inline-block;
+            background: #9b59b6;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            align-self: flex-start;
         }
 
         .ria-data-box {
@@ -512,7 +530,6 @@
             text-align: center;
         }
 
-        /* كروت عناوين البنوك */
         .bank-address-card {
             border: 2px solid var(--accent-blue);
             background: linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, var(--card-bg) 100%);
@@ -573,7 +590,7 @@
             <h2 class="category-title">قسم الباقة الاقتصادية</h2>
             <div class="servers-grid">
                 
-                <!-- 1. سوريانا الأول مع الهوست الجديد بالأعلى -->
+                <!-- 1. سوريانا الأول -->
                 <div class="server-card" data-name="soryana سوريانا">
                     <div class="server-name">Soryana</div>
                     <div class="host-item">
@@ -649,12 +666,12 @@
             </div>
         </section>
 
-        <!-- SECTION: VIP (المدمر ثم كاسر ثم شامل ثم الباقي) -->
+        <!-- SECTION: VIP (المدمر ثم كاسر مع الهوست الجديد ثم شامل ثم الباقي) -->
         <section id="cat-vip" class="category-section" style="display: none;">
             <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم باقة VIP ⭐</h2>
             <div class="servers-grid">
                 
-                <!-- 1. المدمر الأول (مع الهوست الجديد) -->
+                <!-- 1. المدمر الأول -->
                 <div class="server-card" data-name="modamer مدمر">
                     <div class="server-name">modamer</div>
                     <div class="host-item">
@@ -671,9 +688,13 @@
                     </div>
                 </div>
 
-                <!-- 2. كاسر الثاني -->
+                <!-- 2. كاسر الثاني (مع الهوست الجديد بالأعلى) -->
                 <div class="server-card" data-name="kasser الكاسر">
                     <div class="server-name">kasser</div>
+                    <div class="host-item">
+                        <span class="host-url">http://103.76.130.48:8080</span>
+                        <button class="copy-btn" onclick="copyText('http://103.76.130.48:8080', this)">نسخ الهوست</button>
+                    </div>
                     <div class="host-item">
                         <span class="host-url">http://sr.ka4u8k.online:80</span>
                         <button class="copy-btn" onclick="copyText('http://sr.ka4u8k.online:80', this)">نسخ الهوست</button>
@@ -1005,7 +1026,7 @@
 
             <!-- تطبيق Echoserver -->
             <div class="featured-app-banner secondary-app">
-                <span class="featured-badge secondary-badge"> المشغل المعتمد الثاني  </span>
+                <span class="featured-badge secondary-badge">تطبيق البث الاحتياطي</span>
                 <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
                 <div class="featured-desc">
                     يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
@@ -1028,6 +1049,46 @@
         
         <div class="payments-layout">
             
+            <!-- كارت التحويل البنكي لبريطانيا (UK Bank Transfer) -->
+            <div class="payment-card uk-card">
+                <div class="uk-badge">🇬🇧 تحويل بنكي داخلي (داخل بريطانيا فقط - UK Only)</div>
+                
+                <div class="ria-data-box">
+                    <div class="ria-item">
+                        <span class="ria-label">Recipient Name:</span>
+                        <span class="ria-val">MUHAMMED RIZA MIMAROGLU</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">IBAN:</span>
+                        <span class="ria-val">GB20 CLJU 0413 0735 4903 91</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">Bank Name:</span>
+                        <span class="ria-val">Clear Junction Limited</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">BIC Code:</span>
+                        <span class="ria-val">CLJUGB21XXX</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">Sort Code:</span>
+                        <span class="ria-val">0413 07</span>
+                    </div>
+                    <div class="ria-item">
+                        <span class="ria-label">Account Number:</span>
+                        <span class="ria-val">35 4903 91</span>
+                    </div>
+                </div>
+
+                <div class="ria-warning" style="background: rgba(155, 89, 182, 0.15); border-color: rgba(155, 89, 182, 0.4); color: #dfb2f2;">
+                    ⚠️ تنبيه: هذا التحويل مخصص فقط لمن هم داخل المملكة المتحدة (UK Local Transfer).
+                </div>
+
+                <div class="copy-group">
+                    <button class="copy-btn" style="background: #9b59b6; color: #fff;" onclick="copyText('Recipient Name: MUHAMMED RIZA MIMAROGLU\nIBAN: GB20 CLJU 0413 0735 4903 91\nBank Name: Clear Junction Limited\nBIC Code: CLJUGB21XXX\nSort Code: 0413 07\nAccount Number: 35 4903 91', this)">نسخ بيانات التحويل البريطاني كاملة</button>
+                </div>
+            </div>
+
             <!-- عنوان البنك البلغاري -->
             <div class="payment-card bank-address-card">
                 <div class="bank-badge">🏢 عنوان البنك البلغاري (Bulgarian Bank Address)</div>
