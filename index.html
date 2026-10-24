@@ -68,21 +68,28 @@
             font-size: 1rem;
         }
 
-        /* أزرار التنقل الرئيسية العلوية (3 أقسام) */
+        /* شريط التنقل العلوي بالترتيب الجديد */
         .navigation-tabs {
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 8px;
             margin-bottom: 20px;
-            width: 100%;
+            overflow-x: auto;
+            padding: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .navigation-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .tab-btn {
-            flex: 1;
+            flex: 0 0 auto;
             background-color: var(--tab-inactive);
             color: var(--text-muted);
             border: 2px solid var(--border-color);
-            padding: 12px 6px;
+            padding: 10px 16px;
             font-size: 0.95rem;
             font-weight: bold;
             border-radius: 25px;
@@ -106,7 +113,7 @@
             display: block !important;
         }
 
-        /* شريط الباقات (3 باقات فقط) */
+        /* شريط الباقات الثلاثة */
         .host-categories-bar {
             display: flex;
             align-items: center;
@@ -143,7 +150,7 @@
             box-shadow: 0 0 10px rgba(204, 164, 59, 0.3);
         }
 
-        /* قسم البحث */
+        /* حقل البحث */
         .search-container {
             margin: 0 auto 20px auto;
             width: 100%;
@@ -319,7 +326,7 @@
             display: none;
         }
 
-        /* قسم التطبيقات */
+        /* تنسيقات قسم التطبيقات */
         .featured-apps-container {
             display: flex;
             flex-direction: column;
@@ -408,7 +415,7 @@
             transition: all 0.2s ease;
         }
 
-        /* قسم المدفوعات */
+        /* تنسيقات قسم المدفوعات */
         .payments-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -460,9 +467,8 @@
             background: linear-gradient(180deg, rgba(155, 89, 182, 0.1) 0%, var(--card-bg) 100%);
         }
 
-        .ria-badge {
+        .ria-badge, .uk-badge {
             display: inline-block;
-            background: #e67e22;
             color: #fff;
             padding: 4px 12px;
             border-radius: 20px;
@@ -472,17 +478,8 @@
             align-self: flex-start;
         }
 
-        .uk-badge {
-            display: inline-block;
-            background: #9b59b6;
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            align-self: flex-start;
-        }
+        .ria-badge { background: #e67e22; }
+        .uk-badge { background: #9b59b6; }
 
         .ria-data-box {
             background: rgba(0, 0, 0, 0.3);
@@ -551,6 +548,57 @@
             display: flex;
             gap: 8px;
         }
+
+        /* تنسيقات قسم الاختلافات */
+        .plans-comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .plan-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .plan-box-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .plan-box ul li {
+            padding: 5px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            color: #cbd5e0;
+        }
+
+        .plan-box ul li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-box ul li::before {
+            content: "•";
+            color: var(--accent-gold);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: -0.5em;
+        }
     </style>
 </head>
 <body>
@@ -562,17 +610,17 @@
         <p>منصة الإدارة الموحدة للهوستات والمدفوعات</p>
     </header>
 
-    <!-- الأقسام الثلاثة الرئيسية من الأعلى -->
+    <!-- الأقسام الأربعة بالترتيب المطلوب -->
     <div class="navigation-tabs">
         <button id="tab-btn-hosts-section" class="tab-btn active" onclick="switchTab('hosts-section', this)">🌐 الهوستات</button>
-        <button id="tab-btn-apps-section" class="tab-btn" onclick="switchTab('apps-section', this)">📲 التطبيقات</button>
         <button id="tab-btn-payments-section" class="tab-btn" onclick="switchTab('payments-section', this)">💳 المدفوعات</button>
+        <button id="tab-btn-plans-section" class="tab-btn" onclick="switchTab('plans-section', this)">📊 الاختلافات</button>
+        <button id="tab-btn-apps-section" class="tab-btn" onclick="switchTab('apps-section', this)">📲 التطبيقات</button>
     </div>
 
     <!-- ==================== 1. قسم الهوستات ==================== -->
     <div id="hosts-section" class="portal-section active-section">
         
-        <!-- شريط الباقات الثلاثة -->
         <div class="host-categories-bar">
             <button id="cat-btn-cat-economy" class="host-cat-btn active" onclick="filterHostCategory('cat-economy', this)">الاقتصادية</button>
             <button id="cat-btn-cat-vip" class="host-cat-btn" onclick="filterHostCategory('cat-vip', this)">VIP</button>
@@ -585,12 +633,11 @@
 
         <div id="noResultsMessage" class="no-results">❌ لا يوجد سيرفر بهذا الاسم!</div>
 
-        <!-- SECTION: ECONOMY (سوريانا في الأول مع الهوست الجديد) -->
+        <!-- SECTION: ECONOMY -->
         <section id="cat-economy" class="category-section" style="display: block;">
             <h2 class="category-title">قسم الباقة الاقتصادية</h2>
             <div class="servers-grid">
                 
-                <!-- 1. سوريانا الأول -->
                 <div class="server-card" data-name="soryana سوريانا">
                     <div class="server-name">Soryana</div>
                     <div class="host-item">
@@ -613,7 +660,6 @@
                     </div>
                 </div>
 
-                <!-- باقي سيرفرات الاقتصادية -->
                 <div class="server-card" data-name="ktn">
                     <div class="server-name">KTN</div>
                     <div class="host-item">
@@ -666,12 +712,11 @@
             </div>
         </section>
 
-        <!-- SECTION: VIP (المدمر ثم كاسر مع الهوست الجديد ثم شامل ثم الباقي) -->
+        <!-- SECTION: VIP -->
         <section id="cat-vip" class="category-section" style="display: none;">
             <h2 class="category-title" style="border-right-color: #ff4757; color: #ff4757;">قسم باقة VIP ⭐</h2>
             <div class="servers-grid">
                 
-                <!-- 1. المدمر الأول -->
                 <div class="server-card" data-name="modamer مدمر">
                     <div class="server-name">modamer</div>
                     <div class="host-item">
@@ -688,7 +733,6 @@
                     </div>
                 </div>
 
-                <!-- 2. كاسر الثاني (مع الهوست الجديد بالأعلى) -->
                 <div class="server-card" data-name="kasser الكاسر">
                     <div class="server-name">kasser</div>
                     <div class="host-item">
@@ -709,7 +753,6 @@
                     </div>
                 </div>
 
-                <!-- 3. شامل الثالث -->
                 <div class="server-card" data-name="shamel شامل">
                     <div class="server-name">shamel</div>
                     <div class="host-item">
@@ -738,7 +781,6 @@
                     </div>
                 </div>
 
-                <!-- باقي سيرفرات VIP -->
                 <div class="server-card" data-name="dh">
                     <div class="server-name">DH</div>
                     <div class="host-item">
@@ -878,12 +920,11 @@
             </div>
         </section>
 
-        <!-- SECTION: ULTRA (دار ثم نيو ثم الباقي) -->
+        <!-- SECTION: ULTRA -->
         <section id="cat-ultra" class="category-section" style="display: none;">
             <h2 class="category-title" style="border-right-color: #00e5ff; color: #00e5ff;">قسم الباقة الخارقة (ULTRA) 🔥</h2>
             <div class="servers-grid">
                 
-                <!-- 1. دار الأول -->
                 <div class="server-card" data-name="dar دار">
                     <div class="server-name">DAR</div>
                     <div class="host-item">
@@ -908,7 +949,6 @@
                     </div>
                 </div>
 
-                <!-- 2. نيو الثاني -->
                 <div class="server-card" data-name="neo نيو">
                     <div class="server-name">neo</div>
                     <div class="host-item">
@@ -925,7 +965,6 @@
                     </div>
                 </div>
 
-                <!-- باقي سيرفرات ULTRA -->
                 <div class="server-card" data-name="hulk هالك">
                     <div class="server-name">HULK</div>
                     <div class="host-item">
@@ -1002,54 +1041,12 @@
         </section>
     </div>
 
-    <!-- ==================== 2. قسم التطبيقات المستقل ==================== -->
-    <div id="apps-section" class="portal-section">
-        <h2 class="category-title" style="border-right-color: var(--accent-blue); color: var(--accent-blue);">📲 تطبيقات التحميل المباشر</h2>
-        
-        <div class="featured-apps-container">
-            <!-- مشغل CELYA PLAYER -->
-            <div class="featured-app-banner">
-                <span class="featured-badge">المشغل المعتمد الأول</span>
-                <div class="featured-title">🚀 تحميل مشغل CELYA PLAYER للأجهزة الذكية</div>
-                <div class="featured-desc">
-                    يمكنك تحميل المشغل مباشرة عن طريق إدخال كود التحميل داخل تطبيق <strong>Downloader</strong> على جهازك.
-                </div>
-                <div class="code-display-box">
-                    <div class="code-label">كود التحميل المباشر (Downloader Code):</div>
-                    <div class="code-number">6824120</div>
-                </div>
-                <div class="banner-actions">
-                    <button class="banner-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('6824120', this)">نسخ الكود فقط</button>
-                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق CELYA PLAYER مباشرة عبر إدخال كود التحميل (6824120) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
-                </div>
-            </div>
-
-            <!-- تطبيق Echoserver -->
-            <div class="featured-app-banner secondary-app">
-                <span class="featured-badge secondary-badge"> المشغل المعتمد الثاني </span>
-                <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
-                <div class="featured-desc">
-                    يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
-                </div>
-                <div class="code-display-box" style="border-color: var(--accent-gold);">
-                    <div class="code-label" style="color: var(--accent-gold);">كود التحميل المباشر (Downloader Code):</div>
-                    <div class="code-number">1147977</div>
-                </div>
-                <div class="banner-actions">
-                    <button class="banner-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('1147977', this)">نسخ الكود فقط</button>
-                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق Echoserver مباشرة عبر إدخال كود التحميل (1147977) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== 3. قسم المدفوعات وعناوين البنوك ==================== -->
+    <!-- ==================== 2. قسم المدفوعات وعناوين البنوك ==================== -->
     <div id="payments-section" class="portal-section">
         <h2 class="category-title" style="border-right-color: var(--success-color); color: var(--success-color);">💳 خيارات الدفع وعناوين البنوك</h2>
         
         <div class="payments-layout">
             
-            <!-- كارت التحويل البنكي لبريطانيا (UK Bank Transfer) -->
             <div class="payment-card uk-card">
                 <div class="uk-badge">🇬🇧 تحويل بنكي داخلي (داخل بريطانيا فقط - UK Only)</div>
                 
@@ -1089,7 +1086,6 @@
                 </div>
             </div>
 
-            <!-- عنوان البنك البلغاري -->
             <div class="payment-card bank-address-card">
                 <div class="bank-badge">🏢 عنوان البنك البلغاري (Bulgarian Bank Address)</div>
                 <div class="payment-link-display" style="color: #fff; font-weight: bold; background: rgba(0,0,0,0.35);">
@@ -1098,7 +1094,6 @@
                 <button class="copy-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('TSARIGRADSKO SHOSE BLVD. 111P, SOFIA, Bulgaria', this)">نسخ عنوان البنك البلغاري</button>
             </div>
 
-            <!-- عنوان بنك زين / ليتوانيا -->
             <div class="payment-card bank-address-card" style="border-color: var(--accent-gold); background: linear-gradient(180deg, rgba(204, 164, 59, 0.08) 0%, var(--card-bg) 100%);">
                 <div class="bank-badge" style="background: var(--accent-gold);">🏢 عنوان بنك زين / ليتوانيا (Zen Bank - Lithuania)</div>
                 <div class="payment-link-display" style="color: #fff; font-weight: bold; background: rgba(0,0,0,0.35);">
@@ -1107,7 +1102,6 @@
                 <button class="copy-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('Lvivo str. 25-104, LT-09320 Vilnius, Lithuania', this)">نسخ عنوان بنك زين</button>
             </div>
 
-            <!-- كارت تحويل Ria -->
             <div class="payment-card ria-card">
                 <div class="ria-badge">تحويل نقدي / Ria Transfer</div>
                 
@@ -1139,7 +1133,6 @@
                 </div>
             </div>
 
-            <!-- روابط الدفع بالكارت -->
             <div class="payment-card">
                 <div class="payment-amount">💶 20 Euro</div>
                 <div class="payment-link-display">https://mrmimaroglu.com/buy/seo-marketing-school-course</div>
@@ -1197,10 +1190,122 @@
         </div>
     </div>
 
+    <!-- ==================== 3. قسم الاختلافات (مع أزرار النسخ المنفصلة) ==================== -->
+    <div id="plans-section" class="portal-section">
+        <h2 class="category-title" style="border-right-color: var(--accent-gold); color: var(--accent-gold);">📊 الاختلاف بين الاشتراكات</h2>
+        
+        <div class="plans-comparison-container">
+            <!-- زر نسخ النص الكامل -->
+            <button class="copy-btn" style="background: var(--accent-gold); color: #000; font-size: 1.05rem; padding: 12px 0;" onclick="copyFullComparisonText(this)">
+                📋 نسخ رسالة الاختلاف بين الاشتراكات كاملة للعميل
+            </button>
+
+            <!-- كارت باقة اقتصادية -->
+            <div class="plan-box" style="border-color: #718096;">
+                <div class="plan-box-title" style="color: #cbd5e0;">🟢 باقة اقتصادية:</div>
+                <ul id="text-economy">
+                    <li>أكثر من 10,000 قناة عربية وأجنبية منتقاة</li>
+                    <li>جودة بث HD ثابتة</li>
+                    <li>مكتبة أفلام مترجمة متنوعة</li>
+                    <li>متصلة بـ DNS خاص للثبات وسرعة تحميل عالية</li>
+                </ul>
+                <button class="copy-btn" style="background: #2d3748; color: #fff; margin-top: 5px;" onclick="copySinglePlan('economy', this)">نسخ الباقة الاقتصادية فقط</button>
+            </div>
+
+            <!-- كارت باقة VIP -->
+            <div class="plan-box" style="border-color: #ff4757;">
+                <div class="plan-box-title" style="color: #ff4757;">⭐ باقة VIP:</div>
+                <ul id="text-vip">
+                    <li>أكثر من 15,000 قناة (وبنسخة Plus حوالي 13,000 قناة مختارة)</li>
+                    <li>مكتبة واسعة أفلام ومسلسلات</li>
+                    <li>تغطية كاملة للقنوات العربية والأجنبية + رياضة</li>
+                    <li>بث 4K حقيقي</li>
+                    <li>2–4 مصادر لكل قناة لضمان مشاهدة بدون تقطيع</li>
+                    <li>قوائم وتوصيات ذكية تناسب ذوقك</li>
+                </ul>
+                <button class="copy-btn" style="background: #ff4757; color: #fff; margin-top: 5px;" onclick="copySinglePlan('vip', this)">نسخ باقة VIP فقط</button>
+            </div>
+
+            <!-- كارت باقة خارقة جدا (Ultra) -->
+            <div class="plan-box" style="border-color: #00e5ff;">
+                <div class="plan-box-title" style="color: #00e5ff;">🔥 باقة خارقة جدا (Ultra):</div>
+                <ul id="text-ultra">
+                    <li>أكثر من 15,000 قناة ومحتوى يتجدد يوميًا + أفلام ومسلسلات بلا حدود</li>
+                    <li>تغطية رياضية قوية جدًا (مثل beIN وغيرها) بمصادر متعددة لكل مباراة</li>
+                    <li>جودة UHD/4K فائقة</li>
+                    <li>متصلة بـ DNS خاص بثبات أعلى وبوفيرينغ أسرع</li>
+                    <li>دعم ترجمة إضافية (عربية/إنجليزية/فرنسية/إسبانية…)</li>
+                    <li>دعم 24/7 وتحديثات أسرع</li>
+                </ul>
+                <button class="copy-btn" style="background: var(--accent-blue); color: #000; margin-top: 5px;" onclick="copySinglePlan('ultra', this)">نسخ الباقة الخارقة فقط</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 4. قسم التطبيقات المستقل ==================== -->
+    <div id="apps-section" class="portal-section">
+        <h2 class="category-title" style="border-right-color: var(--accent-blue); color: var(--accent-blue);">📲 تطبيقات التحميل المباشر</h2>
+        
+        <div class="featured-apps-container">
+            <div class="featured-app-banner">
+                <span class="featured-badge">المشغل المعتمد الأول</span>
+                <div class="featured-title">🚀 تحميل مشغل CELYA PLAYER للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تحميل المشغل مباشرة عن طريق إدخال كود التحميل داخل تطبيق <strong>Downloader</strong> على جهازك.
+                </div>
+                <div class="code-display-box">
+                    <div class="code-label">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">6824120</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-blue); color: #000;" onclick="copyText('6824120', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق CELYA PLAYER مباشرة عبر إدخال كود التحميل (6824120) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+
+            <div class="featured-app-banner secondary-app">
+                <span class="featured-badge secondary-badge">تطبيق البث الاحتياطي</span>
+                <div class="featured-title">⚡ تحميل تطبيق Echoserver للأجهزة الذكية</div>
+                <div class="featured-desc">
+                    يمكنك تثبيت التطبيق وتنزيله عبر إدخال كود التحميل السريع داخل تطبيق <strong>Downloader</strong>.
+                </div>
+                <div class="code-display-box" style="border-color: var(--accent-gold);">
+                    <div class="code-label" style="color: var(--accent-gold);">كود التحميل المباشر (Downloader Code):</div>
+                    <div class="code-number">1147977</div>
+                </div>
+                <div class="banner-actions">
+                    <button class="banner-btn" style="background: var(--accent-gold); color: #000;" onclick="copyText('1147977', this)">نسخ الكود فقط</button>
+                    <button class="banner-btn" style="background: var(--border-color); color: #fff;" onclick="copyText('يمكنك تحميل تطبيق Echoserver مباشرة عبر إدخال كود التحميل (1147977) داخل تطبيق Downloader على جهازك.', this)">نسخ التعليمات للعميل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-    // التبديل بين الأقسام الرئيسية مع الحفظ التلقائي في الذاكرة
+    // نصوص الباقات المنفصلة والكاملة
+    const planTexts = {
+        economy: `باقة اقتصادية:\n- أكثر من 10,000 قناة عربية وأجنبية منتقاة\n- جودة بث HD ثابتة\n- مكتبة أفلام مترجمة متنوعة\n- متصلة بـ DNS خاص للثبات وسرعة تحميل عالية`,
+        vip: `باقة VIP:\n- أكثر من 15,000 قناة (وبنسخة Plus حوالي 13,000 قناة مختارة)\n- مكتبة واسعة أفلام ومسلسلات\n- تغطية كاملة للقنوات العربية والأجنبية + رياضة\n- بث 4K حقيقي\n- 2–4 مصادر لكل قناة لضمان مشاهدة بدون تقطيع\n- قوائم وتوصيات ذكية تناسب ذوقك`,
+        ultra: `باقة خارقة جدا (Ultra):\n- أكثر من 15,000 قناة ومحتوى يتجدد يوميًا + أفلام ومسلسلات بلا حدود\n- تغطية رياضية قوية جدًا (مثل beIN وغيرها) بمصادر متعددة لكل مباراة\n- جودة UHD/4K فائقة\n- متصلة بـ DNS خاص بثبات أعلى وبوفيرينغ أسرع\n- دعم ترجمة إضافية (عربية/إنجليزية/فرنسية/إسبانية…)\n- دعم 24/7 وتحديثات أسرع`
+    };
+
+    const fullComparisonMessage = `الاختلاف بين الاشتراكات\n\n${planTexts.economy}\n\n${planTexts.vip}\n\n${planTexts.ultra}\n\nتحب أي واحد فيهم عشان تختار تجربة مجانية عليه؟ (اقتصادية / VIP / خارقة)`;
+
+    // نسخ باقة واحدة منفصلة
+    function copySinglePlan(planKey, button) {
+        if (planTexts[planKey]) {
+            copyText(planTexts[planKey], button);
+        }
+    }
+
+    // نسخ النص كاملاً
+    function copyFullComparisonText(button) {
+        copyText(fullComparisonMessage, button);
+    }
+
+    // التبديل بين الأقسام الرئيسية مع الحفظ
     function switchTab(sectionId, button) {
         document.querySelectorAll('.portal-section').forEach(section => {
             section.classList.remove('active-section');
@@ -1218,7 +1323,7 @@
         } catch (e) {}
     }
 
-    // تصفية وعرض باقة واحدة فقط مع الحفظ التلقائي في الذاكرة
+    // تصفية وعرض باقة واحدة فقط مع الحفظ
     function filterHostCategory(catId, button) {
         document.querySelectorAll('.host-cat-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -1234,7 +1339,6 @@
             }
         });
 
-        // إعادة ضبط البحث
         document.getElementById('searchInput').value = '';
         document.querySelectorAll('.server-card').forEach(card => card.style.display = 'block');
         document.getElementById('noResultsMessage').style.display = 'none';
@@ -1244,7 +1348,7 @@
         } catch (e) {}
     }
 
-    // استعادة آخر قسم وآخر باقة تم فتحها عند إعادة تحميل الصفحة
+    // استعادة آخر مكان تم فتحه
     window.addEventListener('DOMContentLoaded', () => {
         try {
             const savedTab = localStorage.getItem('smarters_active_tab');
@@ -1261,7 +1365,7 @@
         } catch (e) {}
     });
 
-    // دالة النسخ مع التأكيد
+    // دالة النسخ الفردية
     function copyText(text, button) {
         navigator.clipboard.writeText(text).then(() => {
             const originalText = button.innerText;
@@ -1276,7 +1380,7 @@
         });
     }
 
-    // محرك البحث التلقائي داخل الباقة المفتوحة حالياً
+    // محرك البحث التلقائي
     document.getElementById('searchInput').addEventListener('input', function() {
         const filter = this.value.toLowerCase().trim();
         const activeSection = document.querySelector('#hosts-section .category-section[style*="display: block"]');
