@@ -68,7 +68,7 @@
             font-size: 1rem;
         }
 
-        /* شريط التنقل العلوي بالترتيب الجديد */
+        /* شريط التنقل العلوي بالترتيب */
         .navigation-tabs {
             display: flex;
             align-items: center;
@@ -733,8 +733,13 @@
                     </div>
                 </div>
 
+                <!-- سيرفر كاسر مع الهوست الجديد المضاف بالأعلى -->
                 <div class="server-card" data-name="kasser الكاسر">
                     <div class="server-name">kasser</div>
+                    <div class="host-item">
+                        <span class="host-url">http://ksr36104.online:80</span>
+                        <button class="copy-btn" onclick="copyText('http://ksr36104.online:80', this)">نسخ الهوست</button>
+                    </div>
                     <div class="host-item">
                         <span class="host-url">http://103.76.130.48:8080</span>
                         <button class="copy-btn" onclick="copyText('http://103.76.130.48:8080', this)">نسخ الهوست</button>
